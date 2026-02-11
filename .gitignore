@@ -1,0 +1,74 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Laravel specific files and folders
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+.env
+.env.*.php
+.phpunit.result.cache
+Homestead.yaml
+Homestead.json
+*.sqlite
+
+# Laravel IDE Helper
+_ide_helper.php
+.phpstorm.meta.php
+.idea/
+
+# Composer PHAR
+composer.phar
+
+# npm/Yarn logs
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Laravel Sail Docker files
+docker-compose.override.yml
+
+# OS and editor config
+*.swp
+*.swo
+*.swn
+*~
+*.bak
+*.tmp
+*.log
+
+# JetBrains IDEs (PhpStorm)
+.idea/
+
+# VS Code
+.vscode/
+
+# PHPUnit
+.phpunit.result.cache
+
+# Test coverage
+coverage/
+
+# Cache and build
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
+
+storage/app/*
+!storage/app/.gitignore
+storage/framework/cache/*
+!storage/framework/cache/.gitignore
+storage/framework/sessions/*
+!storage/framework/sessions/.gitignore
+storage/framework/views/*
+!storage/framework/views/.gitignore
+storage/logs/*
+!storage/logs/.gitignore

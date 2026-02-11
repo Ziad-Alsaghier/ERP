@@ -1,0 +1,80 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Prevent direct access to index.php and redirect to the main domain
+    RewriteCond %{THE_REQUEST} \s/index\.php [NC]
+    RewriteRule ^index\.php$ / [L,R=301]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.jpeg|\.gif|robots\.txt|\.ico|\.woff|\.woff2|\.ttf|\.svg)$ [NC]
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+
+    # Route public assets correctly
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(css|assets|landing|storage|installer|js)/(.*)$ public/$1/$2 [L,NC]
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Hide specific files like .env, composer.json, composer.lock, etc.
+<FilesMatch "^\.|(\.env|\.gitignore|composer\.(json|lock)|\.htaccess|\.htpasswd|wp-config\.php|php\.ini)$">
+    Require all denied
+</FilesMatch>
+
+# Protect against XSS and other injections
+# <IfModule mod_headers.c>
+#     Header set X-XSS-Protection "1; mode=block"
+#     Header set X-Content-Type-Options "nosniff"
+#     Header set X-Frame-Options "SAMEORIGIN"
+#     Header set Referrer-Policy "no-referrer-when-downgrade"
+#     Header set Content-Security-Policy "script-src 'self' 'unsafe-inline' 'unsafe-eval';"
+#     Header set Permissions-Policy "geolocation=(), microphone=()"
+# </IfModule>
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "http://localhost"
+</IfModule>
+
+# Prevent access to sensitive files and directories
+<FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|swp|old|~|back)$)">
+    Require all denied
+</FilesMatch>
+
+# Disable server signature
+ServerSignature Off
+
+# Disable TRACE HTTP method to prevent XST
+# TraceEnable Off
+
+# Deny access to all hidden files (starting with a period)
+# <FilesMatch "^\.">
+#     Require all denied
+# </FilesMatch>
+
+# Disable HTTP methods that are not needed
+# <LimitExcept GET POST>
+#     Require all denied
+# </LimitExcept>
+
+# Protect against clickjacking
+# Header always append X-Frame-Options SAMEORIGIN
+
+# Disable ETag header
+# FileETag None

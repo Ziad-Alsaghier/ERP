@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ChartOfAccountType extends Model
+{
+    protected $fillable = [
+        'name',
+        'created_by',
+    ];
+
+    public function supType(){
+        return $this->hasMany('App\Models\ChartOfAccountSubType', 'type', 'id');
+    }
+
+}

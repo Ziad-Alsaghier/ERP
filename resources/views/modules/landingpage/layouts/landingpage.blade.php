@@ -122,7 +122,7 @@
             <div class="container-fluid">
                 <!-- Navbar Row -->
                 <div class="row align-items-center py-0">
-                    <div class="col-2 col-lg-3">
+                    <div class="col-2 col-lg-2">
                         <div class="logo">
                             <a href="{{ route('home.landingpage') }}">
                                 <img src="{{ url($logo) . '/' . $settings['site_logo'] }}" alt="Ihkam ERP Logo"
@@ -131,7 +131,7 @@
                         </div>
                     </div>
 
-                    <div class="col-10 col-lg-9 menu_bar position-relative">
+                    <div class="col-10 col-lg-8 menu_bar position-relative">
                         <nav class="main-nav d-flex align-items-center justify-content-between">
 
                             <!-- Desktop Menu -->

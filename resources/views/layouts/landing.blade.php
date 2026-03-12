@@ -25,7 +25,7 @@
 <html lang="en" dir="{{$setting['SITE_RTL'] == 'on'?'rtl':''}}">
 <head>
 
-    <title>{{__('Holol-tec SaaS')}}</title>
+    <title>{{__('Roaa-tec SaaS')}}</title>
     <meta name="title" content="{{$metatitle}}">
     <meta name="description" content="{{$metsdesc}}">
 
@@ -149,7 +149,7 @@
                     class="text-white mb-sm-4 wow animate__fadeInLeft"
                     data-wow-delay="0.2s"
                 >
-                    {{__('Holol-tec SaaS')}}
+                    {{__('Roaa-tec SaaS')}}
                 </h1>
                 <h2
                     class="text-white mb-sm-4 wow animate__fadeInLeft"
@@ -165,7 +165,7 @@
                     <a href="{{ route('login') }}" class="btn btn-light me-2"
                     ><i class="far fa-eye me-2"></i>Live Demo</a
                     >
-                    <a href="https://codecanyon.net/item/Holol-tec-saas-all-in-one-business-erp-with-project-account-hrm-crm/33263426" class="btn btn-outline-light" target="_blank"
+                    <a href="https://codecanyon.net/item/Roaa-tec-saas-all-in-one-business-erp-with-project-account-hrm-crm/33263426" class="btn btn-outline-light" target="_blank"
                     ><i class="fas fa-shopping-cart me-2"></i>Buy now</a
                     >
                 </div>
@@ -278,7 +278,7 @@
                     class="mb-sm-4 f-w-600 wow animate__fadeInLeft"
                     data-wow-delay="0.2s"
                 >
-                    {{__('Holol-tec SaaS')}}
+                    {{__('Roaa-tec SaaS')}}
                 </h1>
                 <h2 class="mb-sm-4 wow animate__fadeInLeft" data-wow-delay="0.4s">
                     {{__(' All In One Business ERP With Project, Account, HRM, CRM')}}
@@ -316,7 +316,7 @@
                     class="mb-sm-4 f-w-600 wow animate__fadeInRight"
                     data-wow-delay="0.2s"
                 >
-                    {{__('Holol-tec SaaS')}}
+                    {{__('Roaa-tec SaaS')}}
                 </h1>
                 <h2 class="mb-sm-4 wow animate__fadeInRight" data-wow-delay="0.4s">
                     {{__('All In One Business ERP With Project, Account, HRM, CRM')}}
@@ -462,7 +462,7 @@
                     class="mb-sm-4 f-w-600 wow animate__fadeInLeft"
                     data-wow-delay="0.2s"
                 >
-                    {{__('Holol-tec SaaS')}}
+                    {{__('Roaa-tec SaaS')}}
                 </h1>
                 <h2 class="mb-sm-4 wow animate__fadeInLeft" data-wow-delay="0.4s">
                     {{__('All In One Business ERP With Project, Account, HRM, CRM')}}
@@ -500,7 +500,7 @@
                     class="mb-sm-4 f-w-600 wow animate__fadeInRight"
                     data-wow-delay="0.2s"
                 >
-                    {{__('Holol-tec SaaS')}}
+                    {{__('Roaa-tec SaaS')}}
                 </h1>
                 <h2 class="mb-sm-4 wow animate__fadeInRight" data-wow-delay="0.4s">
                     {{__('All In One Business ERP With Project, Account, HRM, CRM')}}
@@ -848,7 +848,7 @@
                     class="mb-sm-4 f-w-600 wow animate__fadeInLeft"
                     data-wow-delay="0.2s"
                 >
-                    {{__('Holol-tec SaaS')}}
+                    {{__('Roaa-tec SaaS')}}
                 </h1>
                 <h2 class="mb-sm-4 wow animate__fadeInLeft" data-wow-delay="0.4s">
                     {{__('All In One Business ERP With Project, Account, HRM, CRM')}}
@@ -952,7 +952,7 @@
             </div>
             <div class="col-lg-6 col-sm-12 text-end">
 
-                <p class="text-body">Copyright © 2023 | Design By Holol-tec</p>
+                <p class="text-body">Copyright © 2023 | Design By Roaa-tec</p>
             </div>
         </div>
     </div>

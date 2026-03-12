@@ -14,7 +14,7 @@ class ApiGenerate extends Controller
                 'message' => 'Password is required',
             ], 422);
         }
-        $response = Http::post('https://api.thefuture-erp.com/public/api/auth/generate_key/user', [
+        $response = Http::post('https://api.ihkam-erp.com/public/api/auth/generate_key/user', [
             'email' => auth()->user()->email,
             'password' => $request->password,
         ]);

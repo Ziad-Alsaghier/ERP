@@ -33,7 +33,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>
-        {{ Utility::companyData($invoice->created_by, 'title_text') ? Utility::companyData($invoice->created_by, 'title_text') : config('app.name', 'Holol-tec') }}
+        {{ Utility::companyData($invoice->created_by, 'title_text') ? Utility::companyData($invoice->created_by, 'title_text') : config('app.name', 'Roaa-tec') }}
         - {{ __('Invoice') }}</title>
 
     <meta name="title" content="{{ $metatitle }}">

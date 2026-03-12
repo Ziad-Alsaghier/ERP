@@ -311,7 +311,7 @@
         <div class="border-top border-dark text-center p-2">
 
             <p class="mb-0">  &copy;
-                {{ date('Y') }} {{ Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'Holol-tec') }}
+                {{ date('Y') }} {{ Utility::getValByName('footer_text') ? Utility::getValByName('footer_text') : config('app.name', 'Roaa-tec') }}
             </p>
 
         </div>

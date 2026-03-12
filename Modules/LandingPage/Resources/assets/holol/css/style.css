@@ -63,7 +63,7 @@ body {
 body {
   /* cursor: none; */
   font-size: 16px;
-  font-family: 'Saira', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 h1,
@@ -308,7 +308,8 @@ video {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px) {
   .sticky {
     padding: 10px 20px;
   }
@@ -361,7 +362,8 @@ video {
   text-transform: capitalize;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px) {
   .title h2 {
     font-size: 48px;
   }
@@ -463,21 +465,24 @@ video {
   -o-transition: all 0.5s ease-out 0s;
   transition: all 0.5s ease-out 0s;
 }
+
 @media (max-width: 1613px) {
-    .cmn-btn a {
-        padding: 7px 20px;
-      }
+  .cmn-btn a {
+    padding: 7px 20px;
+  }
 }
+
 @media (max-width: 1370px) {
-    .cmn-btn a {
-        padding: 5px 15px;
-      }
+  .cmn-btn a {
+    padding: 5px 15px;
+  }
 }
+
 @media (max-width: 1250px) {
-    .cmn-btn a {
-        padding: 5px 12px;
-        font-size: 12px;
-      }
+  .cmn-btn a {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
 }
 
 .cmn-btn a:before {
@@ -682,10 +687,11 @@ header {
   transition: all 0.8s ease-out 0s;
   background: rgba(255, 255, 255, 1);
 }
+
 @media (max-width: 1703px) {
-    header {
-        padding: 0 50px;
-      }
+  header {
+    padding: 0 50px;
+  }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -694,7 +700,9 @@ header {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   header {
     padding: 20px 0px;
     background-color: white;
@@ -828,15 +836,16 @@ header {
 
 
 @media (max-width: 1200px) {
-    .get-quate{
-        position: absolute;
-        top: 0;
-        width: 75%;
-        text-align: center;
-    }
-    .mobile-menu-logo{
-        padding-top: 75px;
-    }
+  .get-quate {
+    position: absolute;
+    top: 0;
+    width: 75%;
+    text-align: center;
+  }
+
+  .mobile-menu-logo {
+    padding-top: 75px;
+  }
 }
 
 /*===========================
@@ -847,7 +856,7 @@ header {
   background-image: url(../img/hero-bg.png);
   background-size: cover;
   background-position: center center;
-  height: 100%;
+  height: 20% !important;
   overflow: hidden;
   z-index: 1;
   top: 83px;
@@ -1030,7 +1039,8 @@ header {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px) {
   .hero-content {
     max-width: 400px;
     padding: 20px;
@@ -1220,7 +1230,8 @@ header {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px) {
   .hero-content p {
     font-size: 14px;
     line-height: initial;
@@ -1366,7 +1377,8 @@ header {
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .hero-content .slider-num {
     display: none;
   }
@@ -1474,7 +1486,8 @@ header {
   margin-bottom: 45px;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .service-area .title {
     margin-bottom: 60px;
   }
@@ -2330,18 +2343,27 @@ header {
   text-align: center;
   line-height: 45px;
   margin-bottom: 50px;
-  overflow: hidden; }
-  @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-    .single-client {
-      padding: 20px 10px; } }
-  @media (max-width: 767px) {
-    .single-client {
-      margin-bottom: 30px; } }
-  .single-client img {
-    max-height: auto;
-    object-fit: contain;
+  overflow: hidden;
+}
 
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .single-client {
+    padding: 20px 10px;
   }
+}
+
+@media (max-width: 767px) {
+  .single-client {
+    margin-bottom: 30px;
+  }
+}
+
+.single-client img {
+  max-height: auto;
+  object-fit: contain;
+
+}
+
 .single-client .client-hover {
   position: absolute;
   left: 0;
@@ -3435,7 +3457,8 @@ body.dark {
   margin-bottom: 30px;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px) {
   .story-right p {
     margin-bottom: 40px;
   }
@@ -3608,7 +3631,8 @@ body.dark {
   font-weight: 600;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px) {
   .story-skill .progress-bar-circle div span b {
     top: -44px;
     font-size: 22px;
@@ -3847,7 +3871,8 @@ body.dark {
   margin: 0;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .pricing-plan .or2 {
     order: 2;
   }
@@ -3934,7 +3959,8 @@ body.dark {
   z-index: 1;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .single-price-box {
     padding: 40px 30px;
     margin-bottom: 30px;
@@ -4692,7 +4718,8 @@ body.dark {
   transition: all 0.5s ease-out 0s;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .office-info {
     margin-bottom: 30px;
   }
@@ -4793,29 +4820,41 @@ body.dark {
 .contact-information {
   position: relative;
   margin-top: 120px;
-  overflow: hidden; }
-  @media (max-width: 767px) {
-    .contact-information {
-      margin-top: 80px; } }
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .contact-information {
+    margin-top: 80px;
+  }
+}
 
 @media (max-width: 767px) {
   .contact-form {
-    text-align: center; } }
+    text-align: center;
+  }
+}
+
 .contact-form h3 {
   font-weight: bold;
   font-size: 30px;
   text-transform: uppercase;
   color: #19171B;
-  margin-bottom: 40px; }
-  @media (max-width: 767px) {
-    .contact-form h3 {
-      font-size: 24px; } }
-      .contact-form form .form-switch{
-        background: #FFFFFF;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+  .contact-form h3 {
+    font-size: 24px;
+  }
+}
+
+.contact-form form .form-switch {
+  background: #FFFFFF;
   box-sizing: border-box;
   margin-top: 40px;
   padding: 0 25px;
-      }
+}
 
 .contact-form form input:not([type="checkbox"]),
 .contact-form form select,
@@ -4827,11 +4866,15 @@ body.dark {
   width: 100%;
   margin-top: 40px;
   height: 60px;
-  padding: 0 25px; }
+  padding: 0 25px;
+}
+
 .contact-form form textarea {
   height: 150px;
   padding: 25px;
-  resize: none; }
+  resize: none;
+}
+
 .contact-form form button[type="submit"] {
   max-width: 180px;
   background-color: #D90A2C;
@@ -4848,18 +4891,23 @@ body.dark {
   -moz-transition: all 0.5s ease-out 0s;
   -ms-transition: all 0.5s ease-out 0s;
   -o-transition: all 0.5s ease-out 0s;
-  transition: all 0.5s ease-out 0s; }
-  .contact-form form button[type="submit"]:hover {
-    color: #272727;
-    background-color: transparent;
-    border: 2px solid #D90A2C; }
+  transition: all 0.5s ease-out 0s;
+}
+
+.contact-form form button[type="submit"]:hover {
+  color: #272727;
+  background-color: transparent;
+  border: 2px solid #D90A2C;
+}
+
 .google-map {
   position: absolute;
   right: 0;
   top: 0;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .google-map {
     position: static;
   }
@@ -4888,7 +4936,8 @@ body.dark {
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .google-map iframe {
     width: 100%;
   }
@@ -5361,7 +5410,9 @@ body.dark {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .tags a {
     margin-bottom: 10px;
   }
@@ -5565,7 +5616,8 @@ body.dark {
   margin-left: 90px;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .single-comments:nth-child(odd) {
     margin-left: 0;
   }
@@ -5575,7 +5627,8 @@ body.dark {
   margin-top: 80px;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .comment-form {
     margin-bottom: 50px;
   }
@@ -5759,13 +5812,16 @@ textarea {
   min-width: 50%;
 }
 
-@media only screen and (min-width: 1400px) and (max-width: 1650px), only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 1400px) and (max-width: 1650px),
+only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px) {
   .comming-soon-left {
     padding: 0px 40px;
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .comming-soon-left {
     min-width: 100%;
     padding: 0px 40px;
@@ -5895,7 +5951,8 @@ textarea {
   transition: all 0.5s ease-out 0s;
 }
 
-@media only screen and (min-width: 1400px) and (max-width: 1650px), only screen and (min-width: 1200px) and (max-width: 1399px) {
+@media only screen and (min-width: 1400px) and (max-width: 1650px),
+only screen and (min-width: 1200px) and (max-width: 1399px) {
   .subscribe-mail form input[type="submit"] {
     min-width: 150px;
   }
@@ -5971,7 +6028,8 @@ textarea {
   background-color: #fff;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .comming-soon-right {
     display: none;
   }
@@ -6393,7 +6451,8 @@ footer {
   padding: 0 100px;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px) {
   .header-layout3 {
     padding: 0 30px;
     padding-top: 5px;
@@ -6418,7 +6477,8 @@ footer {
   display: block;
 }
 
-@media only screen and (min-width: 1400px) and (max-width: 1650px), only screen and (min-width: 1200px) and (max-width: 1399px) {
+@media only screen and (min-width: 1400px) and (max-width: 1650px),
+only screen and (min-width: 1200px) and (max-width: 1399px) {
   .main-nav.layout3 ul li {
     padding: 0 15px;
   }
@@ -6446,7 +6506,8 @@ footer {
   list-style: none;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .header-right .social-media-layout3 {
     display: none;
   }
@@ -6484,19 +6545,22 @@ footer {
   margin-left: 50px;
 }
 
-@media only screen and (min-width: 1400px) and (max-width: 1650px), only screen and (min-width: 1200px) and (max-width: 1399px) {
+@media only screen and (min-width: 1400px) and (max-width: 1650px),
+only screen and (min-width: 1200px) and (max-width: 1399px) {
   .header-right .cmn-btn-layout3 {
     margin-left: 20px;
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .header-right .cmn-btn-layout3 {
     margin-left: 0;
   }
 }
 
-@media only screen and (min-width: 1400px) and (max-width: 1650px), only screen and (min-width: 1200px) and (max-width: 1399px) {
+@media only screen and (min-width: 1400px) and (max-width: 1650px),
+only screen and (min-width: 1200px) and (max-width: 1399px) {
   .header-right .cmn-btn-layout3 a {
     font-size: 16px;
     padding: 15px 20px;
@@ -6529,7 +6593,9 @@ footer {
   z-index: 1;
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .circle {
     display: none;
   }
@@ -6593,7 +6659,8 @@ footer {
   left: 25%;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .swiper.hero-slider-3 .slider-navigations {
     display: none;
   }
@@ -6692,7 +6759,8 @@ footer {
   text-transform: uppercase;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (min-width: 1200px) and (max-width: 1399px),
+only screen and (min-width: 992px) and (max-width: 1199px) {
   .hero-content-layout3 h1 {
     font-size: 80px;
   }
@@ -6990,7 +7058,8 @@ footer {
   padding-left: 30px;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px),
+(max-width: 767px) {
   .fini-about-content {
     padding-left: 0;
   }
@@ -7470,7 +7539,8 @@ footer {
   opacity: 1;
 }
 
-.project-item:hover:before, .project-item:hover:after {
+.project-item:hover:before,
+.project-item:hover:after {
   transform: scale(1);
   visibility: visible;
   opacity: 1;
@@ -7760,24 +7830,26 @@ footer {
 
 @media only screen and (max-width: 1795px) {
 
-    header .main-nav ul li a {
-        padding-right: 10px;
-        font-size: 20px;
-      }
+  header .main-nav ul li a {
+    padding-right: 10px;
+    font-size: 20px;
+  }
 }
+
 @media only screen and (max-width: 1550px) {
 
-    header .main-nav ul li a {
-        padding-right: 5px;
-        font-size: 18px;
-      }
+  header .main-nav ul li a {
+    padding-right: 5px;
+    font-size: 18px;
+  }
 }
+
 @media only screen and (max-width: 1300px) {
 
-    header .main-nav ul li a {
-        padding-right: 5px;
-        font-size: 15px;
-      }
+  header .main-nav ul li a {
+    padding-right: 5px;
+    font-size: 15px;
+  }
 }
 
 
@@ -7922,14 +7994,286 @@ footer {
     margin-bottom: -1px;
   }
 }
-.menu_bar{
-    text-align: center;
+
+.menu_bar {
+  text-align: center;
 }
 
 @media (max-width: 1200px) {
 
-    .menu_bar{
-        text-align: right;
-    }
+  .menu_bar {
+    text-align: right;
+  }
 
+}
+
+/*  Hero Section Style */
+.hero-saas {
+  background: linear-gradient(135deg, #0f172a, #1e40af);
+  padding: 120px 0;
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  opacity: 0.8;
+  margin-bottom: 30px;
+}
+
+/* تعديل hero-buttons */
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+/* Buttons Base */
+.btn-primary,
+.btn-outline {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease, transform 0.3s ease;
+  border-radius: 8px;
+  padding: 12px 30px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Primary Button */
+.btn-primary {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+}
+
+/* Outline Button */
+.btn-outline {
+  border: 2px solid #fff;
+  color: #fff;
+  background: transparent;
+}
+
+/* overlay animation */
+.btn-primary::before,
+.btn-outline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
+  transition: all 0.6s linear;
+  z-index: 1;
+}
+
+/* hover animation */
+.btn-primary:hover::before,
+.btn-outline:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover,
+.btn-outline:hover {
+  transform: translateY(-3px);
+  color: #fff;
+}
+
+/* لضمان ظهور النص فوق overlay */
+.btn-primary span,
+.btn-outline span {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.swiper-pagination-bullet {
+  background: #fff;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+
+/* Servcies Section Style */
+
+/* ===== Services Section ===== */
+#services-section {
+  background: black;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+#services-section .title span {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#services-section .title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+/* Single Service Card */
+.single-service {
+  background: #fff;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.single-service:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Overlay */
+.single-service .service-overlay {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+  transition: all 0.6s linear;
+  z-index: 0;
+}
+
+.single-service:hover .service-overlay {
+  left: 100%;
+}
+
+/* Service Icon */
+.service-icon-img {
+  max-width: 80px;
+  font-weight: bolder;
+  transition: transform 0.4s ease;
+}
+
+.single-service:hover .service-icon-img {
+  transform: scale(1.2);
+}
+
+/* Service Content */
+.single-service .service-content h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.single-service .service-content p {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Read More Button */
+.btn-show-more {
+  position: relative;
+  color: #3b82f6;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-show-more:hover {
+  transform: translateX(5px);
+  position: relative;
+  color: #fff;
+
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background-color: #3b82f6;
+  border: 2px solid #3b82f6;
+  padding: 8px 20px;
+  border-radius: 8px;
+}
+
+.btn-show-more i img {
+  width: 18px;
+}
+
+/* Count Badge */
+.single-service .count {
+  font-size: 28px;
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  #services-section .title h2 {
+    font-size: 26px;
+  }
+
+  .single-service .service-content h4 {
+    font-size: 18px;
+  }
+}
+
+/* Navbar Section  */
+
+/* Search */
+.search-form {
+    position: relative;
+}
+
+.search-form input {
+    border-radius: 50px;
+    padding: 5px 15px;
+    width: 180px;
+    transition: all 0.3s;
+}
+
+.search-form input:focus {
+    width: 240px;
+    outline: none;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+.search-form button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    color: #3b82f6;
+    transition: all 0.3s;
+}
+
+.search-form button:hover {
+    transform: translateY(-50%) scale(1.2) !important;
+}
+
+/* Buttons */
+.btn-outline-primary {
+    border: 1px solid #3b82f6;
+    color: #3b82f6;
+}
+
+.btn-outline-primary:hover {
+    background: #3b82f6;
+    color: #fff;
+}
+
+/* Flex adjustment */
+.main-nav .d-flex.align-items-center.ms-auto {
+    gap: 0.5rem;
 }

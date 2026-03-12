@@ -296,13 +296,13 @@ class Utility extends Model
         ];
 
         $settings['social'] = [
-            'facebook' => 'https://www.facebook.com/share/18Li5Y5Lsm/',
-            'twitter' => 'https://x.com/ThefutureErp',
-            'linkedin' => '',
-            'instagram' => 'https://www.instagram.com/thefuture.erp/?fbclid=IwY2xjawJSK-FleHRuA2FlbQIxMAABHW7Yl0-LjkHzElU5BqkfrgnrXdMf6RD_3rYZkptQY9ebxTWusfeEWncNcw_aem_vQeigHzKAW77A7qACHJdqA#',
-            'youtube' => 'https://www.youtube.com/@TheFuture-ERP',
-            'pinterest' => '',
-            'tikto' => 'https://www.tiktok.com/@thefuture.erp?fbclid=IwY2xjawJSK75leHRuA2FlbQIxMAABHWFEuDHgWp1y4_dQpb7eiB4cmWZbs65YMVm8GEWDC9UtaREPBPHU1NsZGQ_aem_aA3ZdZZSH_Y9-_HLY65hKQ',
+            'facebook' => 'https://www.facebook.com/Softwarevision147',
+            'twitter' => '#',
+            'linkedin' => 'https://www.linkedin.com/company/104302613/admin/inbox/thread/2-OTJiZjAzMjQtZWYzNy00ZTIzLTgwODgtOWJkYzdkZThlNzU1XzEwMA==/',
+            'instagram' => '#',
+            'youtube' => '#',
+            'pinterest' => '#',
+            'tikto' => '#',
         ];
         foreach ($data as $row) {
             $settings[$row->name] = $row->value;

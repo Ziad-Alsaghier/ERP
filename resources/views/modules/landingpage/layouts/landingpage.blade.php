@@ -41,7 +41,6 @@
     <meta property="twitter:title" content="{{ $metatitle }}">
     <meta property="twitter:description" content="{{ $metsdesc }}">
     <meta property="twitter:image" content="{{ $meta_image . $meta_logo }}">
-
     <!-- Favicon icon -->
     <link rel="icon" href="{{ $sup_logo . '/' . $adminSettings['company_favicon'] }}" type="image/x-icon" />
 
@@ -53,7 +52,8 @@
     <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/holol/css/swiper-bundle.min.css') }}" />
     <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/holol/css/lightbox.min.css') }}" />
     <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/holol/css/nice-select.css') }}" />
-    <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/holol/css/jQuery-plugin-progressbar.css') }}" />
+    <link rel="stylesheet"
+        href="{{ Module::asset('LandingPage:Resources/assets/holol/css/jQuery-plugin-progressbar.css') }}" />
     <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/holol/css/barfiller.css') }}" />
     <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/holol/css/magnific-popup.css') }}" />
     <link rel="stylesheet" href="{{ Module::asset('LandingPage:Resources/assets/holol/css/style.css') }}" />
@@ -120,61 +120,85 @@
     <div class="main">
         <header class="position_top shadow-sm">
             <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-1">
-                        <div class="logo" style="width:100px;">
-                            <a href="{{ route('home.landingpage') }}"><img
-                                    src="{{ url($logo) . '/' . $settings['site_logo'] }}" width="70px" alt /></a>
+                <!-- Navbar Row -->
+                <div class="row align-items-center py-0">
+                    <div class="col-2 col-lg-3">
+                        <div class="logo">
+                            <a href="{{ route('home.landingpage') }}">
+                                <img src="{{ url($logo) . '/' . $settings['site_logo'] }}" alt="Ihkam ERP Logo"
+                                    class="img-fluid">
+                            </a>
                         </div>
                     </div>
-                    <div class="col-11 menu_bar">
-                        <nav class="main-nav ">
-                            <div class="mobile-menu-logo" style="width: 100px;">
-                                <a href="{{ route('home.landingpage') }}"><img
-                                        src="{{ url($logo) . '/' . $settings['site_logo'] }}" alt /></a>
-                            </div>
-                            <ul class="text-center d-lg-flex">
+
+                    <div class="col-10 col-lg-9 menu_bar position-relative">
+                        <nav class="main-nav d-flex align-items-center justify-content-between">
+
+                            <!-- Desktop Menu -->
+                            <ul class="desktop-menu list-unstyled d-none d-lg-flex gap-1 me-0 mb-0 align-items-center flex-grow-1">
                                 @foreach ($pages as $page => $value)
-                                    <li><a class="list_nav"
-                                            href="{{ route('custom.page', $value['page_slug']) }}">{{ __($value['menubar_page_name']) }}</a>
+                                    <li class="nav-item mx-2">
+                                        <a class="list_nav fs-6" href="{{ route('custom.page', $value['page_slug']) }}">
+                                            {{ __($value['menubar_page_name']) }}
+                                        </a>
                                     </li>
                                 @endforeach
-                                <li><a class="list_nav" href="{{ route('pricePlan') }}">{{ __('Plans') }}</a></li>
-                                <li class="has-child text-dark list_nav active">
-                                    <a href="javascript:void(0)" class="text-dark">{{ __('Languages') }} <i
-                                            class="bi bi-chevron-down text-dark pt-0"></i></a>
-                                    <ul class="sub-menu">
+                                <li class="nav-item mx-2">
+                                    <a class="list_nav fs-6" href="{{ route('pricePlan') }}">{{ __('Plans') }}</a>
+                                </li>
+
+                                <!-- Languages Dropdown -->
+                                <li class="nav-item dropdown mx-2">
+                                    <a class="list_nav fs-6 dropdown-toggle" href="javascript:void(0)"
+                                        data-bs-toggle="dropdown">
+                                        {{ __('Languages') }}
+                                    </a>
+                                    <ul class="dropdown-menu">
                                         @foreach ($languages as $code => $language)
-                                            <li><a class="{{ $locale == $code ? 'active' : '' }}"
-                                                    href="{{ route('change.language', $code) }}">{{ ucFirst($language) }}</a>
+                                            <li>
+                                                <a class="dropdown-item {{ $locale == $code ? 'active' : '' }}"
+                                                    href="{{ route('change.language', $code) }}">
+                                                    {{ ucFirst($language) }}
+                                                </a>
                                             </li>
                                         @endforeach
                                     </ul>
                                 </li>
-
-                                <div class="get-quate pt-4 ps-4">
-                                    <div class="cmn-btn">
-                                        @if (isset(\Auth::user()->name))
-                                            <a href="{{ route('home') }}"> {{ Auth::user()->name }}</a>
-                                        @else
-                                                <a href="{{ route('login') }}">{{ __('Login') }}</a>
-                                            </div>
-                                            <div class="cmn-btn">
-                                                <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                                            </div>
-                                        @endif
-                                </div>
                             </ul>
+
+                            <!-- Search + Auth -->
+                            <div class="d-flex align-items-center ms-auto">
+                                <form action="#" class="search-form me-3">
+                                    <input type="text" name="query" placeholder="{{ __('Search...') }}">
+                                    <button type="submit"><i class="bi bi-search"></i></button>
+                                </form>
+
+                                @if (isset(\Auth::user()->name))
+                                    <a href="{{ route('home') }}"
+                                        class="btn btn-primary btn-sm me-2">{{ Auth::user()->name }}</a>
+                                @else
+                                    <a href="{{ route('login') }}"
+                                        class="btn btn-outline-primary btn-sm me-2">{{ __('Login') }}</a>
+                                    <a href="{{ route('register') }}"
+                                        class="btn btn-primary btn-sm">{{ __('Register') }}</a>
+                                @endif
+                            </div>
+
+                            <!-- Mobile Toggle -->
+                            <div class="mobile-menu d-lg-none">
+                                <a href="javascript:void(0)" class="cross-btn">
+                                    <span class="cross-top"></span>
+                                    <span class="cross-middle"></span>
+                                    <span class="cross-bottom"></span>
+                                </a>
+                            </div>
+
                         </nav>
 
-                        <div class="mobile-menu">
-                            <a href="javascript:void(0)" class="cross-btn">
-                                <span class="cross-top"></span>
-                                <span class="cross-middle"></span>
-                                <span class="cross-bottom"></span>
-                            </a>
+                        <!-- Mobile Menu Content -->
+                        <div class="mobile-menu-content d-lg-none bg-light p-4 rounded shadow-sm d-none">
+                            <!-- similar as before -->
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -187,10 +211,10 @@
                         <div class="footer-widget">
                             <div class="footer-logo">
                                 <a href="{{ route('home.landingpage') }}"><img
-                                        src="{{ url($logo) . '/' . $settings['site_logo'] }}" style="max-width: 100px;"
-                                        width="20px" alt /></a>
+                                        src="{{ url($sup_logo) . '/' . $adminSettings['company_favicon'] }}"
+                                        style="max-width: 100px;" width="20px" alt /></a>
                             </div>
-                            <address>
+                            {{-- <address>
                                 <h4>
                                     {{ __('Office') }}
                                 </h4>
@@ -198,7 +222,7 @@
                                     {{ __('Egypt - Cairo - Qalyubia -El-Gomhoria st') }}</p>
                                 <p><i class="fas fa-map-marker-alt text-danger"></i> {{ __('Alexandria - almandara') }}
                                 </p>
-                            </address>
+                            </address> --}}
                             <ul class="social-media-icons">
 
                                 <li><a target="_blank" href="{{$adminSettings['social']['facebook']}}"><i
@@ -211,7 +235,7 @@
                                             class="fab fa-tiktok"></i></a></li>
                                 <li><a target="_blank" href="{{$adminSettings['social']['twitter']}}"><i
                                             class="fab fa-twitter"></i></a></li>
-                                <li><a target="_blank" href="https://wa.me/201023068425"><i
+                                <li><a target="_blank" href="https://wa.me/201013924210"><i
                                             class="fab fa-whatsapp"></i></a></li>
                             </ul>
                             <div class="d-flex w-100 justify-content-start mt-2 align-items-center">
@@ -251,8 +275,8 @@
                                     <i class="fas fa-phone-alt"></i>
                                 </div>
                                 <div class="phone">
-                                    <a href="tel:00201023068425">{{ __('EGYPT') }} :
-                                        {{ App::isLocale('ar') ? '201023068425+' : '+201023068425' }}</a>
+                                    <a href="tel:00201013924210">{{ __('EGYPT') }} :
+                                        {{ App::isLocale('ar') ? '201013924210+' : '+201013924210' }}</a>
                                     <a href="tel:+966508060608">{{ __('Saudi Arabia') }} :
                                         {{ App::isLocale('ar') ? '966508060608+' : '+966508060608' }}</a>
                                     <a href="tel:+971506058635">{{ __('Emirates') }} :
@@ -266,7 +290,7 @@
                                     <i class="far fa-envelope"></i>
                                 </div>
                                 <div class="email">
-                                    <a href="mailto:info@thefuture-erp.com"><span>info@thefuture-erp.com</span></a>
+                                    <a href="mailto:info@ihkam-erp.com"><span>info@ihkam-erp.com</span></a>
                                     <a href="mailto:info@hololtec.com"><span>info@hololtec.com</span></a>
                                 </div>
                             </div>
@@ -277,7 +301,7 @@
                     <div class="row align-items-center">
                         <div class="col-12 col-md-4 col-lg-4 col-xl-5">
                             <div class="copy-txt">
-                                <span>Copyright by thefuture-erp.com © {{ date('Y') }}.</span>
+                                <span>Copyright by ihkam-erp.com © {{ date('Y') }}.</span>
                             </div>
                         </div>
 

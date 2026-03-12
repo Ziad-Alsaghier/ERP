@@ -42,7 +42,7 @@
 <html lang="en">
 
 <head>
-    <title>{{__('Holol-tec')}}</title>
+    <title>{{__('Roaa-tec')}}</title>
 
     <meta name="title" content="{{$metatitle}}">
     <meta name="description" content="{{$metsdesc}}">

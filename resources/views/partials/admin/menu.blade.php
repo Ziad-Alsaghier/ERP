@@ -8,10 +8,10 @@
         <a href="{{ route('home') }}" class="b-brand">
             @if ($setting['cust_darklayout'] && $setting['cust_darklayout'] == 'on')
                 <img src="{{ asset($logo . '/' . (isset( $setting['company_logo_light']) && !empty( $setting['company_logo_light']) ?  $setting['company_logo_light'] : 'logo-dark.png')) }}"
-                    alt="{{ env('APP_NAME') }}" class="logo logo-lg">
+                    alt="{{ env('APP_NAME') }}" class="logo ">
             @else
                 <img src="{{ asset($logo . '/' . (isset($company_logo) && !empty($company_logo) ? $setting['company_logo_dark'] : 'logo-light.png')) }}"
-                    alt="{{ env('APP_NAME') }}" class="logo logo-lg">
+                    alt="{{ env('APP_NAME') }}" class="logo ">
             @endif
 
         </a>

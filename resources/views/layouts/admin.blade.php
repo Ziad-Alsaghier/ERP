@@ -6,7 +6,7 @@
 <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 
 <head>
-    <title>{{ $setting['title_text'] ? $setting['title_text'] : config('app.name', 'Holol-tec') }} - @yield('page-title')
+    <title>{{ $setting['title_text'] ? $setting['title_text'] : config('app.name', 'Roaa-tec') }} - @yield('page-title')
     </title>
 
     <meta name="title" content="{{$setting['meta_title']}}">
@@ -159,12 +159,89 @@
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
+       /* Sidebar wrapper */
+    .custom-navbar {
+        background-color: #1F2A38 !important;
+        padding: 15px !important;
+        height: 100vh !important;
+    }
+
+    /* Main menu items */
+    .custom-dash-item {
+        margin-bottom: 5px !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .custom-dash-link {
+        display: flex !important;
+        align-items: center !important;
+        color: #ffffff !important;
+        padding: 12px 15px !important;
+        text-decoration: none !important;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        background: #16202B !important;
+        border-left: 4px solid transparent !important;
+    }
+
+    .custom-dash-link:hover {
+        background: #203445 !important;
+        border-left: 4px solid #4296C0 !important; /* Logo color */
+    }
+
+    .custom-dash-micon i {
+        font-size: 20px !important;
+        margin-right: 10px !important;
+        color: #4296C0 !important;
+    }
+
+    .custom-dash-mtext {
+        flex: 1 !important;
+    }
+
+    .custom-dash-arrow i {
+        transition: transform 0.3s ease !important;
+    }
+
+    .dash-hasmenu.open > .custom-dash-link .custom-dash-arrow i {
+        transform: rotate(90deg) !important;
+    }
+
+    /* Submenu styling */
+    .custom-dash-submenu {
+        display: none !important;
+        background-color: #111C27 !important;
+        border-radius: 0 0 8px 8px !important;
+        margin-top: 5px !important;
+        padding-left: 0 !important;
+        list-style: none !important;
+    }
+
+    .dash-hasmenu.open > .custom-dash-submenu {
+        display: block !important;
+    }
+
+    .custom-subitem-link {
+        display: block !important;
+        padding: 10px 30px !important;
+        color: #b0c4d8 !important;
+        font-size: 14px !important;
+        transition: all 0.3s ease !important;
+        text-decoration: none !important;
+    }
+
+    .custom-subitem-link:hover {
+        color: #ffffff !important;
+        background-color: #203445 !important;
+        border-left: 3px solid #4296C0 !important;
+        border-radius: 5px !important;
+    }
       </style>
 </head>
 
 
-
-<body class="{{ $setting['color_flag'] ? 'custom-color' : $color }}">
+<body class="{{ true ? 'custom-color' : $color }}">
 
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">

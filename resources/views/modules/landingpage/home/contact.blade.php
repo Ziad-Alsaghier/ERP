@@ -118,7 +118,7 @@
             <h4 class="fw-semibold mb-0 text-body-emphasis">{{__('Egypt')}}</h4>
      
                     <div class="contact">
-                        <p class="text-body-secondary">{{__('Alexandria')}} : <a class="styled-link" href="tel:+201023068425">+201023068425</a> <br>{{__('Cairo')}}<i class="ti ti-file-phone"></i><i class="ti ti-phone-calling"></i> : 201012916653    <a href="https://wa.me/201012916653?text=Hello,%20I%20am%20interested%20in%20your%20services" class="whatsApp" target="_blank">
+                        <p class="text-body-secondary">{{__('Alexandria')}} : <a class="styled-link" href="tel:+201013924210">+201013924210</a> <br>{{__('Cairo')}}<i class="ti ti-file-phone"></i><i class="ti ti-phone-calling"></i> : 201012916653    <a href="https://wa.me/201012916653?text=Hello,%20I%20am%20interested%20in%20your%20services" class="whatsApp" target="_blank">
                             <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" width="15" height="15">
                     </a> <br> {{__('from')}} 9AM : 6PM</p>
                         {{--  Go to Whatsapp --}}
@@ -161,7 +161,7 @@
         <div class="col d-flex flex-column gap-2">
 
             <h4 class="fw-semibold mb-0 text-body-emphasis">{{__('Email')}}</h4>
-            <p class="text-body-secondary">info@thefuture-erp.com <br>info@hololtec.com </p>
+            <p class="text-body-secondary">info@ihkam-erp.com <br>info@hololtec.com </p>
         </div>
 
 

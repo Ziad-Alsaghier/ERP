@@ -8,7 +8,7 @@
     <div class="footer-wrapper">
         <div class="py-1">
             <p class="mb-0 text-muted"> &copy;
-                {{ date('Y') }} {{ $setting['footer_text'] ? $setting['footer_text'] : config('app.name', 'Holol-tec') }}
+                {{ date('Y') }} {{ $setting['footer_text'] ? $setting['footer_text'] : config('app.name', 'Roaa-tec') }}
             </p>
         </div>
     </div>

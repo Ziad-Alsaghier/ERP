@@ -29581,3 +29581,89 @@ h6.noti{
     background-color: blueviolet !important;
 
 }
+
+
+
+
+  /* Sidebar wrapper */
+    .custom-navbar {
+        background-color: #1F2A38; /* Dark background */
+        padding: 15px;
+        height: 100vh;
+    }
+
+    /* Main menu items */
+    .custom-dash-item {
+        margin-bottom: 5px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .custom-dash-link {
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+        padding: 12px 15px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        background: #16202B;
+        border-left: 4px solid transparent;
+    }
+
+    .custom-dash-link:hover {
+        background: #203445;
+        border-left: 4px solid #4296C0; /* Your logo color */
+    }
+
+    .custom-dash-micon i {
+        font-size: 20px;
+        margin-right: 10px;
+        color: #4296C0;
+    }
+
+    .custom-dash-mtext {
+        flex: 1;
+    }
+
+    .custom-dash-arrow i {
+        transition: transform 0.3s ease;
+    }
+
+    .dash-hasmenu.open > .custom-dash-link .custom-dash-arrow i {
+        transform: rotate(90deg);
+    }
+
+    /* Submenu styling */
+    .custom-dash-submenu {
+        display: none;
+        background-color: #111C27;
+        border-radius: 0 0 8px 8px;
+        margin-top: 5px;
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .dash-hasmenu.open > .custom-dash-submenu {
+        display: block;
+    }
+
+    .custom-subitem-link {
+        display: block;
+        padding: 10px 30px;
+        color: #b0c4d8;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .custom-subitem-link:hover {
+        color: #ffffff;
+        background-color: #203445;
+        border-left: 3px solid #4296C0;
+        border-radius: 5px;
+    }
+
+
+
+    

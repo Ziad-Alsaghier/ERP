@@ -140,7 +140,7 @@
 
         function saveAsPDF() {
             $.ajax({
-                url: 'http://hololtec.local/userinfo/img',
+                url: 'http://ihkamtec.local/userinfo/img',
                 method: 'GET',
                 success: function(response) {
                     var logo_image = '<img src="' + response.logo + '" alt="Company Logo" >';

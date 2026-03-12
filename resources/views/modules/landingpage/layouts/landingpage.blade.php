@@ -274,7 +274,7 @@
                                 <div class="num-icon">
                                     <i class="fas fa-phone-alt"></i>
                                 </div>
-                                <div class="phone">
+                                {{-- <div class="phone">
                                     <a href="tel:00201013924210">{{ __('EGYPT') }} :
                                         {{ App::isLocale('ar') ? '201013924210+' : '+201013924210' }}</a>
                                     <a href="tel:+966508060608">{{ __('Saudi Arabia') }} :
@@ -283,7 +283,7 @@
                                         {{ App::isLocale('ar') ? '971506058635+' : '+971506058635' }}</a>
                                     <a href="tel:+212680080175">{{ __('Morroco') }} :
                                         {{ App::isLocale('ar') ? '212680080175+' : '+212680080175' }}</a>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="office-mail">
                                 <div class="mail-icon">
@@ -291,7 +291,7 @@
                                 </div>
                                 <div class="email">
                                     <a href="mailto:info@ihkam-erp.com"><span>info@ihkam-erp.com</span></a>
-                                    <a href="mailto:info@hololtec.com"><span>info@hololtec.com</span></a>
+                                    <a href="mailto:info@ihkamtec.com"><span>info@ihkamtec.com</span></a>
                                 </div>
                             </div>
                         </div>

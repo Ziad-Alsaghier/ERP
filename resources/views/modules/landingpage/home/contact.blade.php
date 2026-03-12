@@ -161,7 +161,7 @@
         <div class="col d-flex flex-column gap-2">
 
             <h4 class="fw-semibold mb-0 text-body-emphasis">{{__('Email')}}</h4>
-            <p class="text-body-secondary">info@ihkam-erp.com <br>info@hololtec.com </p>
+            <p class="text-body-secondary">info@ihkam-erp.com <br>info@ihkamtec.com </p>
         </div>
 
 

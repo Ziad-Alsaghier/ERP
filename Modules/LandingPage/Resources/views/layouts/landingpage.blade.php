@@ -971,7 +971,7 @@
 
                     </div>
                     <div class="ftr-col">
-                        <ul class="list-unstyled">
+                        {{-- <ul class="list-unstyled">
 
                             @if (is_array(json_decode($settings['menubar_page'])) || is_object(json_decode($settings['menubar_page'])))
                                 @foreach (json_decode($settings['menubar_page']) as $key => $value)
@@ -994,7 +994,7 @@
                                 @endforeach
                             @endif
 
-                        </ul>
+                        </ul> --}}
                     </div>
 
                     @if ($settings['joinus_status'] == 'on')

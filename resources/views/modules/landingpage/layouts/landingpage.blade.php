@@ -124,7 +124,7 @@
                     {{-- Logo --}}
                     <a class="navbar-brand d-flex align-items-center" href="{{ route('home.landingpage') }}">
 
-                        <img src="{{ url($logo) . '/' . $settings['site_logo'] }}" class="erp-logo" alt="ERP Logo">
+                        <img src="{{ url($logo) . '/' . $settings['site_logo'] }}" class="erp-logo" width="150px" alt="ERP Logo">
 
                     </a>
 

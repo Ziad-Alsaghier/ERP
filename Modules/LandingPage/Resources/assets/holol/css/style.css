@@ -8277,3 +8277,65 @@ only screen and (min-width: 992px) and (max-width: 1199px) {
 .main-nav .d-flex.align-items-center.ms-auto {
     gap: 0.5rem;
 }
+
+
+.erp-header{
+    background:#ffffff;
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.erp-logo{
+    height:45px;
+}
+
+.erp-nav-link{
+    font-weight:500;
+    color:#333;
+    padding:12px 15px;
+    transition:.3s;
+}
+
+.erp-nav-link:hover{
+    color:#4f46e5;
+}
+
+.erp-search{
+    position:relative;
+}
+
+.erp-search input{
+    border:1px solid #eee;
+    padding:6px 35px 6px 12px;
+    border-radius:20px;
+}
+
+.erp-search button{
+    position:absolute;
+    right:10px;
+    top:5px;
+    border:none;
+    background:none;
+}
+
+/* Mobile */
+
+@media (max-width:992px){
+
+    .navbar-collapse{
+        background:#fff;
+        padding:20px;
+        border-radius:10px;
+        margin-top:10px;
+    }
+
+    .erp-nav-link{
+        padding:10px 0;
+    }
+
+}
+
+.navbar-toggler-icon {
+    filter: invert(0);
+}

@@ -118,89 +118,136 @@
         })
     </script>
     <div class="main">
-        <header class="position_top shadow-sm">
+        <header class="erp-header shadow-sm">
             <div class="container-fluid">
-                <!-- Navbar Row -->
-                <div class="row align-items-center py-0">
-                    <div class="col-2 col-lg-2">
-                        <div class="logo">
-                            <a href="{{ route('home.landingpage') }}">
-                                <img src="{{ url($logo) . '/' . $settings['site_logo'] }}" alt="Ihkam ERP Logo"
-                                    class="img-fluid">
-                            </a>
-                        </div>
-                    </div>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    {{-- Logo --}}
+                    <a class="navbar-brand d-flex align-items-center" href="{{ route('home.landingpage') }}">
 
-                    <div class="col-10 col-lg-8 menu_bar position-relative">
-                        <nav class="main-nav d-flex align-items-center justify-content-between">
+                        <img src="{{ url($logo) . '/' . $settings['site_logo'] }}" class="erp-logo" alt="ERP Logo">
 
-                            <!-- Desktop Menu -->
-                            <ul class="desktop-menu list-unstyled d-none d-lg-flex gap-1 me-0 mb-0 align-items-center flex-grow-1">
-                                @foreach ($pages as $page => $value)
-                                    <li class="nav-item mx-2">
-                                        <a class="list_nav fs-6" href="{{ route('custom.page', $value['page_slug']) }}">
-                                            {{ __($value['menubar_page_name']) }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                                <li class="nav-item mx-2">
-                                    <a class="list_nav fs-6" href="{{ route('pricePlan') }}">{{ __('Plans') }}</a>
-                                </li>
+                    </a>
 
-                                <!-- Languages Dropdown -->
-                                <li class="nav-item dropdown mx-2">
-                                    <a class="list_nav fs-6 dropdown-toggle" href="javascript:void(0)"
-                                        data-bs-toggle="dropdown">
-                                        {{ __('Languages') }}
+
+                    {{-- Mobile Toggle --}}
+                    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#erpNavbar">
+
+                        <span class="navbar-toggler-icon text-black"></span>
+
+                    </button>
+
+
+                    {{-- Menu --}}
+                    <div class="collapse navbar-collapse" id="erpNavbar">
+
+                        {{-- Center Menu --}}
+                        <ul class="navbar-nav mx-auto align-items-lg-center">
+
+                            @foreach ($pages as $page => $value)
+
+                                <li class="nav-item">
+
+                                    <a class="nav-link erp-nav-link" href="{{ route('custom.page', $value['page_slug']) }}">
+
+                                        {{ __($value['menubar_page_name']) }}
+
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        @foreach ($languages as $code => $language)
-                                            <li>
-                                                <a class="dropdown-item {{ $locale == $code ? 'active' : '' }}"
-                                                    href="{{ route('change.language', $code) }}">
-                                                    {{ ucFirst($language) }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+
                                 </li>
-                            </ul>
 
-                            <!-- Search + Auth -->
-                            <div class="d-flex align-items-center ms-auto">
-                                <form action="#" class="search-form me-3">
-                                    <input type="text" name="query" placeholder="{{ __('Search...') }}">
-                                    <button type="submit"><i class="bi bi-search"></i></button>
-                                </form>
+                            @endforeach
 
-                                @if (isset(\Auth::user()->name))
-                                    <a href="{{ route('home') }}"
-                                        class="btn btn-primary btn-sm me-2">{{ Auth::user()->name }}</a>
-                                @else
-                                    <a href="{{ route('login') }}"
-                                        class="btn btn-outline-primary btn-sm me-2">{{ __('Login') }}</a>
-                                    <a href="{{ route('register') }}"
-                                        class="btn btn-primary btn-sm">{{ __('Register') }}</a>
-                                @endif
-                            </div>
+                            <li class="nav-item">
 
-                            <!-- Mobile Toggle -->
-                            <div class="mobile-menu d-lg-none">
-                                <a href="javascript:void(0)" class="cross-btn">
-                                    <span class="cross-top"></span>
-                                    <span class="cross-middle"></span>
-                                    <span class="cross-bottom"></span>
+                                <a class="nav-link erp-nav-link" href="{{ route('pricePlan') }}">
+
+                                    {{ __('Plans') }}
+
                                 </a>
+
+                            </li>
+
+                        </ul>
+
+
+                        {{-- Right Side --}}
+                        <div class="d-flex align-items-center gap-3">
+
+                            {{-- Search --}}
+                            <form class="erp-search d-none d-lg-flex">
+
+                                <input type="text" placeholder="{{ __('Search...') }}">
+
+                                <button>
+                                    <i class="bi bi-search"></i>
+                                </button>
+
+                            </form>
+
+
+                            {{-- Languages --}}
+                            <div class="dropdown">
+
+                                <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
+
+                                    🌍 {{ strtoupper($locale) }}
+
+                                </button>
+
+                                <ul class="dropdown-menu text-black dropdown-menu-end">
+
+                                    @foreach ($languages as $code => $language)
+
+                                        <li>
+
+                                            <a class="dropdown-item text-black {{ $locale == $code ? 'active' : '' }}"
+                                                href="{{ route('change.language', $code) }}">
+
+                                                {{ ucfirst($language) }}
+
+                                            </a>
+
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
                             </div>
 
-                        </nav>
 
-                        <!-- Mobile Menu Content -->
-                        <div class="mobile-menu-content d-lg-none bg-light p-4 rounded shadow-sm d-none">
-                            <!-- similar as before -->
+                            {{-- Auth --}}
+                            @auth
+
+                                <a href="{{ route('home') }}" class="btn btn-primary">
+
+                                    {{ Auth::user()->name }}
+
+                                </a>
+
+                            @else
+
+                                <a href="{{ route('login') }}" class="btn btn-outline-primary">
+
+                                    {{ __('Login') }}
+
+                                </a>
+
+                                <a href="{{ route('register') }}" class="btn btn-primary">
+
+                                    {{ __('Register') }}
+
+                                </a>
+
+                            @endauth
+
+
                         </div>
+
                     </div>
-                </div>
+
+                </nav>
             </div>
         </header>
         @yield('content')

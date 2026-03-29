@@ -145,7 +145,7 @@ class ProductServiceController extends Controller
                     'attribute_id' => $attribute->id,
                     'name' => $data['attribute_name']
                 ];
-                buildMultiLangData($attributeLang, $langData); // Use Helper Function To Create Languages
+                // buildMultiLangData($attributeLang, $langData); // Use Helper Function To Create Languages
                 $options = $request->only('options');
                 if ($options['options']) { // Create options if it has
                     foreach ($options['options'] as $option) {
@@ -164,7 +164,7 @@ class ProductServiceController extends Controller
                                     'value' => $option,
                                 ];
                                 // Create Multi-Languages
-                                multi_languages($createdOption, $optionLang);
+                                // multi_languages($createdOption, $optionLang);
                             }
                         } else {
                             $attribute->options()->create(['value' => 'Number']);

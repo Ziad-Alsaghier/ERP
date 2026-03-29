@@ -75,11 +75,11 @@ class ProductServiceCategoryController extends Controller
             } else {
                 $request->default = 0;
             }
-            if ($request->hasFile('image')) {
-                $path = $request->file('image')->store('categories', 'public');
-                // Do not overwrite request data
-                // Instead, assign it to a variable or model
-                $imagePath = $path;
+            dd($request->file('image')->store('categories', 'public'));
+            $imagePath = null;
+
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
+                $imagePath = $request->file('image')->store('categories', 'public');
             }
 
             try {

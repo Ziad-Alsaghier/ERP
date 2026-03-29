@@ -88,7 +88,7 @@ class ProductionLineController extends Controller
                 'name' => $data['name'],
             ];
             // Create Multi-Languages
-            multi_languages($newProductionLine, $dataLang); // Start Create Multi-Languages
+            // multi_languages($newProductionLine, $dataLang); // Start Create Multi-Languages
             return redirect()->route('production.line.index')->with('success', __('Production Line Type successfully created.'));
         }
     }

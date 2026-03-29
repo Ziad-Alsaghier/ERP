@@ -25,7 +25,7 @@ class SystemController extends Controller
 {
     public function index()
     {
-        if (\Auth::user()->can('manage system settings')) {
+        if (\Auth::user()->can('manage system settings') || \Auth::user()->type == 'super admin') {
             $settings = Utility::settings();
             $admin_payment_setting = Utility::getAdminPaymentSetting();
             // $emailSetting = Utility::settingsById(\Auth::user()->id);
@@ -45,7 +45,7 @@ class SystemController extends Controller
     public function store(Request $request)
     {
 
-        if (\Auth::user()->can('manage system settings')) {
+        if (\Auth::user()->can('manage system settings') || \Auth::user()->type == 'super admin') {
             if ($request->logo_dark) {
                 $logoName = 'logo-dark.png';
                 $dir = 'uploads/logo/';
@@ -162,7 +162,7 @@ class SystemController extends Controller
 
     public function saveEmailSettings(Request $request)
     {
-        if (\Auth::user()->can('manage system settings')) {
+        if (\Auth::user()->can('manage system settings') || \Auth::user()->type == 'super admin') {
             $request->validate(
                 [
                     'mail_driver' => 'required|string|max:255',

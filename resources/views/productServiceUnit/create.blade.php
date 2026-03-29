@@ -3,7 +3,7 @@
     <div class="row">
         <div class="form-group col-md-12">
             {{ Form::label('name', __('Unit Name'),['class'=>'form-label']) }}
-            {{ Form::text('name', '', array('class' => 'form-control','required'=>'required' , 'placeholder'=>_('Enter Unit Name'))) }}
+            {{ Form::text('name', '', array('class' => 'form-control','required'=>'required' , 'placeholder'=>__('Enter Unit Name'))) }}
             @error('name')
                 <small class="invalid-name" role="alert">
                 <strong class="text-danger">{{ $message }}</strong>

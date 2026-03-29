@@ -35,7 +35,7 @@ class CustomerController extends Controller
 
     public function index()
     {
-        if(\Auth::user()->can('manage customer'))
+        if(\Auth::user()->can('manage customer') || \Auth::user()->type == 'super admin')
         {
             $customers = Customer::where('created_by', \Auth::user()->creatorId())->get();
 
@@ -777,7 +777,7 @@ function customerNumber()
 
     public function searchCustomers(Request $request)
     {
-        if (\Illuminate\Support\Facades\Auth::user()->can('manage customer')) {
+        if (\Illuminate\Support\Facades\Auth::user()->can('manage customer') || \Auth::user()->type == 'super admin') {
             $customers = [];
             $search    = $request->search;
             if ($request->ajax() && isset($search) && !empty($search)) {

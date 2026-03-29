@@ -14,7 +14,7 @@ class PlanController extends Controller
     public function index()
     {
 
-        if(\Auth::user() &&\Auth::user()->can('manage plan'))
+        if(\Auth::user() &&\Auth::user()->can('manage plan') || \Auth::user()->type == 'super admin')
         {
             if(\Auth::user()->type == 'super admin')
             {

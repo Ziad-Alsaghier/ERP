@@ -75,13 +75,9 @@ class ProductServiceCategoryController extends Controller
             } else {
                 $request->default = 0;
             }
-            dd($request->file('image')->store('categories', 'public'));
-            $imagePath = null;
-
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 $imagePath = $request->file('image')->store('categories', 'public');
             }
-
             try {
                 $category = new ProductServiceCategory();
                 $category->color = $request->color;

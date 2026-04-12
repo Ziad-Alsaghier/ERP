@@ -65,13 +65,15 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
+            
             "Modules\\": "Modules/",
             "NadyShalaby\\Zatca\\": "src/"
 
 
         },
         "files": [
-            "app/Helpers/LanguageHelper.php"
+            "app/Helpers/LanguageHelper.php",
+            "app/Helpers/Helpers.php"
         ]
     },
     "autoload-dev": {

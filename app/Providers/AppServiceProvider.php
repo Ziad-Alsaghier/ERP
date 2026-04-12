@@ -33,7 +33,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        
+        require_once app_path('Helpers/helpers.php');
+        require_once app_path('Helpers/LanguageHelper.php');
         try {
             if (Schema::hasTable('settings')) {
                 View::share('setting', Utility::settings());
@@ -43,6 +44,6 @@ class AppServiceProvider extends ServiceProvider
             // Silently fail if settings table doesn't exist (e.g., during migrations)
         }
     }
-    }
+}
 
 

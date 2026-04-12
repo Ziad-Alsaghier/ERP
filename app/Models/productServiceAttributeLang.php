@@ -9,10 +9,16 @@ class productServiceAttributeLang extends Model
 {
     use HasFactory;
 
-    protected $table ='attributes_lang';
+    protected $table = 'attributes_lang';
     protected $fillable = [
         'attribute_id',
         'name',
         'lang'
     ];
+
+    public function lang()
+    {
+        $l = app()->getLocale();
+        return AttributeSelectLang::where('attribute_select_id', $this->id)->where('lang', $l)->first();
+    }
 }

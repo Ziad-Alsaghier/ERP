@@ -11,16 +11,16 @@ class AttributeSelect extends Model
 
     protected $fillable = [
         'attr_id',
-    'value',
+        'value',
     ];
 
     protected $table = 'attribute_selects';
 
     public function lang()
-{
-$l = app()->getLocale();
-return AttributeSelectLang::where('attribute_select_id', $this->id)->where('lang', $l)->first();
-}
+    {
+        $l = app()->getLocale();
+        return AttributeSelectLang::where('attribute_select_id', $this->id)->where('lang', $l)->first();
+    }
 
     public function langs()
     {
@@ -29,8 +29,9 @@ return AttributeSelectLang::where('attribute_select_id', $this->id)->where('lang
 
 
 
-    public function getValueAttribute(){
-return $this?->lang()?->value ;
-}
+    public function getValueAttribute()
+    {
+        return $this?->lang()?->value;
+    }
 
 }

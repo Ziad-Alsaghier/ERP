@@ -479,7 +479,8 @@
                                     <div class="col">
                                         <small class="font-style">
                                             <strong>{{ __('Billed To') }} :</strong><br>
-                                            @if(!empty($invoice->address))
+
+                                            @if(is_array($invoice->address) && !empty($invoice->address))
                                             @php
                                                 $address_billing = json_decode($invoice->address,true);
                                                 echo $address_billing['billing_name'] . '<br>';
@@ -513,7 +514,8 @@
                                         <div class="col ">
                                             <small>
                                                 <strong>{{ __('Shipped To') }} :</strong><br>
-                                                @if(!empty($invoice->address))
+                                                
+                                                @if( is_array($invoice->address) && !empty($invoice->address))
                                                 @php
                                                     $address_billing = json_decode($invoice->address,true);
                                                     echo $address_billing['shipping_name'] . '<br>';

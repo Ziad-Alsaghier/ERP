@@ -49,6 +49,7 @@ use App\Models\WebOrders;
 use App\Models\WebOrdersProducst;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Encoding\Encoding;
+use Prgayman\Zatca\Utilis\QrCodeOptions;
 use ZATCA\GenerateQrCode;
 use ZATCA\Tags\InvoiceDate;
 use ZATCA\Tags\InvoiceTaxAmount;
@@ -123,7 +124,7 @@ class InvoiceController extends Controller
             $customers = Customer::where('created_by', \Auth::user()->creatorId())->get()->pluck('name', 'id');
             $customers->prepend('Select Customer', '');
             if (\Auth::user()->creatorId() == 6) {
-                $orders =  WebOrders::latest()->get();
+                $orders = WebOrders::latest()->get();
             } else {
                 $orders = [];
             }
@@ -191,16 +192,16 @@ class InvoiceController extends Controller
             }
             $status = Invoice::$statues;
             $invoice = new Invoice();
-            $invoice->invoice_id            = $this->invoiceNumber();
-            $invoice->customer_id           = $request->customer_id;
+            $invoice->invoice_id = $this->invoiceNumber();
+            $invoice->customer_id = $request->customer_id;
             $invoice->status = 0;
-            $invoice->issue_date            = $request->issue_date;
-            $invoice->due_date              = $request->due_date;
-            $invoice->category_id           = $request->category_id;
-            $invoice->order_id            = $request->order_id;
-            $invoice->ref_number            = $request->ref_number;
-            $invoice->invoice_details       = $request->invoice_details;
-            $invoice->project               = $request->make_project;
+            $invoice->issue_date = $request->issue_date;
+            $invoice->due_date = $request->due_date;
+            $invoice->category_id = $request->category_id;
+            $invoice->order_id = $request->order_id;
+            $invoice->ref_number = $request->ref_number;
+            $invoice->invoice_details = $request->invoice_details;
+            $invoice->project = $request->make_project;
             //            $invoice->discount_apply = isset($request->discount_apply) ? 1 : 0;
             $invoice->user_id = \Auth::user()->id;
             $invoice->created_by = \Auth::user()->creatorId();
@@ -362,8 +363,8 @@ class InvoiceController extends Controller
                 $invoice->issue_date = $request->issue_date;
                 $invoice->due_date = $request->due_date;
                 $invoice->ref_number = $request->ref_number;
-                $invoice->invoice_details     = $request->invoice_details;
-                $invoice->project              = $request->make_project;
+                $invoice->invoice_details = $request->invoice_details;
+                $invoice->project = $request->make_project;
                 //                $invoice->discount_apply = isset($request->discount_apply) ? 1 : 0;
                 $invoice->category_id = $request->category_id;
                 $invoice->save();
@@ -526,14 +527,43 @@ class InvoiceController extends Controller
                 $settings_data = Utility::settingsById(\Auth::user()->creatorId());
 
             }
-                $data = $this->data($customer, $settings_data, $invoice->items, $invoice);
-                    $qrCode = qrCode($data['information'], $data['items'], $data['invoice'], $width = 300);
+            $data = $this->data($customer, $settings_data, $invoice->items, $invoice);
+            // $qrCode = qrCode($data['information'], $data['items'], $data['invoice'], $width = 300);
+            // Optional
+            $qrCodeOptions = new QrCodeOptions;
 
+            // Format (png,svg,eps)
+            $qrCodeOptions->format("svg");
 
-                return view('invoice.view', compact('invoice', 'customer', 'iteams', 'invoicePayment', 'customFields', 'user', 'invoice_user', 'user_plan', 'creditnote', 'qrCode'));
-            } else {
-                return redirect()->back()->with('error', __('Permission denied.'));
-            }
+            // Color 
+            $qrCodeOptions->color(255, 0, 0, 1);
+
+            // Background Color 
+            $qrCodeOptions->backgroundColor(0, 0, 0);
+
+            // Size
+            $qrCodeOptions->size(500);
+
+            // Margin 
+            $qrCodeOptions->margin(0);
+
+            // Style (square,dot,round)
+            $qrCodeOptions->style('square', 0.5);
+
+            // Eye (square,circle)
+            $qrCodeOptions->eye('square');
+
+            $qrCode = Zatca::sellerName('Zatca')
+                ->vatRegistrationNumber("123456789123456")
+                ->timestamp("2021-12-01T14:00:09Z")
+                ->totalWithVat('100.00')
+                ->vatTotal('15.00')
+                ->toQrCode($qrCodeOptions);
+
+            return view('invoice.view', compact('invoice', 'customer', 'iteams', 'invoicePayment', 'customFields', 'user', 'invoice_user', 'user_plan', 'creditnote', 'qrCode'));
+        } else {
+            return redirect()->back()->with('error', __('Permission denied.'));
+        }
 
     }
 
@@ -982,16 +1012,16 @@ class InvoiceController extends Controller
                 Utility::addTransactionLines($dataMoney);
             }
 
-            $revenue                 = new Revenue();
-            $revenue->revenue_id     = $this->revenueNumber();
-            $revenue->date           = $request->date;
-            $revenue->amount         = $request->amount;
-            $revenue->account_id     = $request->account_id;
-            $revenue->customer_id    = $invoice->customer_id;
-            $revenue->category_id    = $invoice->category_id;
+            $revenue = new Revenue();
+            $revenue->revenue_id = $this->revenueNumber();
+            $revenue->date = $request->date;
+            $revenue->amount = $request->amount;
+            $revenue->account_id = $request->account_id;
+            $revenue->customer_id = $invoice->customer_id;
+            $revenue->category_id = $invoice->category_id;
             $revenue->payment_method = 0;
-            $revenue->reference      = $request->reference;
-            $revenue->description    = $request->description;
+            $revenue->reference = $request->reference;
+            $revenue->description = $request->description;
             if (!empty($request->add_receipt)) {
                 //storage limit
                 $image_size = $request->file('add_receipt')->getSize();
@@ -1010,7 +1040,7 @@ class InvoiceController extends Controller
             }
 
 
-            $revenue->created_by     = \Auth::user()->creatorId();
+            $revenue->created_by = \Auth::user()->creatorId();
             $revenue->save();
 
 
@@ -1497,46 +1527,46 @@ class InvoiceController extends Controller
             $img = asset($logo . '/' . (isset($company_logo) && !empty($company_logo) ? $company_logo : 'logo-dark.png'));
         }
 
-            // Start Setting Data
-            $settings_data = Utility::settingsById($invoice->created_by); // Setting Data
-            $dateTime = new DateTime($invoice->issue_date, new DateTimeZone('UTC'));// Format Date
-            $formattedDate = $dateTime->format('Y-m-d\TH:i:s\Z');
+        // Start Setting Data
+        $settings_data = Utility::settingsById($invoice->created_by); // Setting Data
+        $dateTime = new DateTime($invoice->issue_date, new DateTimeZone('UTC'));// Format Date
+        $formattedDate = $dateTime->format('Y-m-d\TH:i:s\Z');
 
-            $total_price = Utility::priceFormat($settings_data, $invoice->getSubTotal()); // Sup Total
-            $total_price_with_tax = Utility::priceFormat($settings_data, $invoice->getTotal()); // Get Total Tax
+        $total_price = Utility::priceFormat($settings_data, $invoice->getSubTotal()); // Sup Total
+        $total_price_with_tax = Utility::priceFormat($settings_data, $invoice->getTotal()); // Get Total Tax
 
-            $total_price_numeric_with_tax = preg_replace('/[^0-9.]/', '', $total_price_with_tax);
-            $total_price_numeric = preg_replace('/[^0-9.]/', '', $total_price);
+        $total_price_numeric_with_tax = preg_replace('/[^0-9.]/', '', $total_price_with_tax);
+        $total_price_numeric = preg_replace('/[^0-9.]/', '', $total_price);
 
-            $total_price_numeric_tax = $total_price_numeric * 0.15;
-            // End Setting Data
+        $total_price_numeric_tax = $total_price_numeric * 0.15;
+        // End Setting Data
 
-            /** This Section Get
-             * total_item
-             * total_discount
-             * total_vat
-             * total_one
-             * total_product
-             */
-            if (isset($invoice->itemData) && count($invoice->itemData) > 0) {
-                $total_product = 0;
-                $total_discount = 0;
-                $total_vat = 0;
-                $total_one = 0;
-                foreach ($invoice->itemData as $key => $item){
-                    $description = json_decode($item->description, true);
-                    if(is_array($description) && $description['info']['type'] == 'custom'){
-                        foreach ($description as $key_des => $value) {
-                            if ($key_des == 'التسعيرة النهائية') {
-                                foreach ($value as $ke => $val) {
-                                    if($ke == 'سعر الافرادي'){
-                                        $total_product += $val *$item->quantity;
-                                    }
+        /** This Section Get
+         * total_item
+         * total_discount
+         * total_vat
+         * total_one
+         * total_product
+         */
+        if (isset($invoice->itemData) && count($invoice->itemData) > 0) {
+            $total_product = 0;
+            $total_discount = 0;
+            $total_vat = 0;
+            $total_one = 0;
+            foreach ($invoice->itemData as $key => $item) {
+                $description = json_decode($item->description, true);
+                if (is_array($description) && $description['info']['type'] == 'custom') {
+                    foreach ($description as $key_des => $value) {
+                        if ($key_des == 'التسعيرة النهائية') {
+                            foreach ($value as $ke => $val) {
+                                if ($ke == 'سعر الافرادي') {
+                                    $total_product += $val * $item->quantity;
                                 }
                             }
                         }
+                    }
 
-                    }else{
+                } else {
                     $unitName = Unit::find($item->unit);
                     $itemtax = 0;
 
@@ -1545,15 +1575,15 @@ class InvoiceController extends Controller
                             $itemtax += $taxes['tax_price'];
                         }
                     }
-                    $total_item = $item->price * $item->quantity    ;
+                    $total_item = $item->price * $item->quantity;
                     $total_discount += $item->discount * $item->quantity;
                     $total_vat += $itemtax;
                     $total_one += $item->price * $item->quantity;
                     $total_product += $total_item;
-                    }
                 }
             }
-            // Ene Section
+        }
+        // Ene Section
 
 
 
@@ -1575,8 +1605,10 @@ class InvoiceController extends Controller
             $color = '#' . $settings['invoice_color'];
             $font_color = Utility::getFontColor($color);
 
-            return view('report.crm.sales_invoice' ,
-            get_defined_vars()); // We Need Settings Latter Using Templates
+            return view(
+                'report.crm.sales_invoice',
+                get_defined_vars()
+            ); // We Need Settings Latter Using Templates
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }

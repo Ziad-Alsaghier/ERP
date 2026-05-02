@@ -410,7 +410,7 @@ Route::group(['middleware' => ['verified', 'company']], function () {
         }
     );
 
-    Route::get('productservice/index', [ProductServiceController::class, 'index'])->name('productservice.index');
+    // Route::get('productservice/index', [ProductServiceController::class, 'index'])->name('productservice.index');
     Route::get('productservice/images/upload', [ProductServiceController::class, 'index'])->name('productservice.images.upload');
     Route::post('productservice/product/setMainImage/{image}', [ProductServiceController::class, 'chooseMainImage'])->name('product.setMainImage'); // Important Main product
     Route::get('productservice/attributes', [ProductServiceController::class, 'attribute'])->name('productservice.attributes')->middleware(['auth', 'XSS']);

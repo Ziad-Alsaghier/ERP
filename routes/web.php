@@ -181,7 +181,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
-require __DIR__ . '/auth.php' ;
+require __DIR__ . '/auth.php';
 
 
 
@@ -269,8 +269,8 @@ Route::any('/invoice-with-xendit', [XenditPaymentController::class, 'invoicePayW
 Route::any('/invoice-xendit-status', [XenditPaymentController::class, 'getInvociePaymentStatus'])->name('invoice.xendit.status');
 
 Route::post('/invoice-nepalste/payment', [NepalstePaymnetController::class, 'invoicePayWithnepalste'])->name('customer.with.nepalste');
-Route::get('invoice-nepalste/status/',[NepalstePaymnetController::class,'invoiceGetNepalsteStatus'])->name('invoice.nepalste.status');
-Route::get('invoice-nepalste/cancel/',[NepalstePaymnetController::class,'invoiceGetNepalsteCancel'])->name('invoice.nepalste.cancel');
+Route::get('invoice-nepalste/status/', [NepalstePaymnetController::class, 'invoiceGetNepalsteStatus'])->name('invoice.nepalste.status');
+Route::get('invoice-nepalste/cancel/', [NepalstePaymnetController::class, 'invoiceGetNepalsteCancel'])->name('invoice.nepalste.cancel');
 
 /***********************************************************************************************************************************************/
 
@@ -300,7 +300,7 @@ Route::post('/form_view_store', [FormBuilderController::class, 'formViewStore'])
 Route::get('/', [DashboardController::class, 'landingpage'])->middleware(['XSS', 'revalidate'])->name('home.landingpage');
 
 //================================= Invoice Payment Gateways  ====================================//
-Route::group(['middleware' => ['verified','company']], function () {
+Route::group(['middleware' => ['verified', 'company']], function () {
 
     Route::get('/home', [DashboardController::class, 'account_dashboard_index'])->name('home')->middleware(['XSS', 'revalidate']);
 
@@ -340,7 +340,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
 
             Route::get('manage-language/{lang}', [LanguageController::class, 'manageLanguage'])->name('manage.language');
 
@@ -362,7 +363,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::resource('systems', SystemController::class);
             Route::post('email-settings', [SystemController::class, 'saveEmailSettings'])->name('email.settings');
             Route::post('company-email-settings', [SystemController::class, 'saveCompanyEmailSettings'])->name('company.email.settings');
@@ -380,9 +382,14 @@ Route::group(['middleware' => ['verified','company']], function () {
             Route::post('business-setting', [SystemController::class, 'saveBusinessSettings'])->name('business.setting');
             Route::post('company-payment-setting', [SystemController::class, 'saveCompanyPaymentSettings'])->name('company.payment.settings');
 
-            Route::get('test-mail', [SystemController::class, 'testMail'])->name('test.mail');
-            Route::post('test-mail', [SystemController::class, 'testMail'])->name('test.mail');
-            Route::post('test-mail/send', [SystemController::class, 'testSendMail'])->name('test.send.mail');
+            Route::get('test-mail', [SystemController::class, 'testMail'])
+                ->name('test.mail');
+
+            Route::post('test-mail', [SystemController::class, 'testMail'])
+                ->name('test.mail.post');
+
+            Route::post('test-mail/send', [SystemController::class, 'testSendMail'])
+                ->name('test.send.mail');
 
             Route::post('stripe-settings', [SystemController::class, 'savePaymentSettings'])->name('payment.settings');
             Route::post('pusher-setting', [SystemController::class, 'savePusherSettings'])->name('pusher.setting');
@@ -411,7 +418,7 @@ Route::group(['middleware' => ['verified','company']], function () {
     Route::get('productservice/attributes/create', [ProductServiceController::class, 'attributeCreate'])->name('productservice.attributes.create')->middleware(['auth', 'XSS']);
     Route::post('productservice/attributes/store', [ProductServiceController::class, 'attributeStore'])->name('productservice.attributes.attributeStore');
     Route::delete('productservice/attributes/destroy/{attribute}', [ProductServiceController::class, 'attributeDestroy'])->name('productservice.attributes.destroy');
-    Route::get('productservice/attributes/edit/{id}', [ProductServiceController::class, 'editAttribute'])->name('productservice.attributes.edit')->middleware(['auth', 'XSS'])   ;
+    Route::get('productservice/attributes/edit/{id}', [ProductServiceController::class, 'editAttribute'])->name('productservice.attributes.edit')->middleware(['auth', 'XSS']);
     Route::put('productservice/attributes/update/{attribute}', [ProductServiceController::class, 'updateAttribute'])->name('productservice.attributes.update')->middleware(['auth', 'XSS']);
     Route::get('productservice/{id}/detail', [ProductServiceController::class, 'warehouseDetail'])->name('productservice.detail');
     Route::post('empty-cart', [ProductServiceController::class, 'emptyCart'])->middleware(['auth', 'XSS']);
@@ -429,10 +436,12 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('customer/{id}/show', [CustomerController::class, 'show'])->name('customer.show');
             Route::resource('customer', CustomerController::class);
-            Route::get('customer-login/{id}', [CustomerController::class, 'loginunable'])->name('customer.login');;
+            Route::get('customer-login/{id}', [CustomerController::class, 'loginunable'])->name('customer.login');
+            ;
             Route::get('customer/json/list', [CustomerController::class, 'datajson'])->name('customer.datajson');
 
         }
@@ -446,7 +455,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('vender/{id}/show', [VenderController::class, 'show'])->name('vender.show');
             Route::resource('vender', VenderController::class);
         }
@@ -459,7 +469,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::resource('bank-account', BankAccountController::class);
         }
     );
@@ -471,7 +482,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('bank-transfer/index', [BankTransferController::class, 'index'])->name('bank-transfer.index');
             Route::resource('bank-transfer', BankTransferController::class);
         }
@@ -492,7 +504,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('invoice/{id}/duplicate', [InvoiceController::class, 'duplicate'])->name('invoice.duplicate');
             Route::get('invoice/{id}/shipping/print', [InvoiceController::class, 'shippingDisplay'])->name('invoice.shipping.print');
             Route::get('invoice/{id}/payment/reminder', [InvoiceController::class, 'paymentReminder'])->name('invoice.payment.reminder');
@@ -523,7 +536,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('credit-note', [CreditNoteController::class, 'index'])->name('credit.note');
             Route::get('{invoice_id}/credit-note', [CreditNoteController::class, 'show'])->name('creditNote.show');
             Route::get('custom-credit-note', [CreditNoteController::class, 'customCreate'])->name('invoice.custom.credit.note');
@@ -544,7 +558,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('debit-note', [DebitNoteController::class, 'index'])->name('debit.note');
             Route::get('custom-debit-note', [DebitNoteController::class, 'customCreate'])->name('bill.custom.debit.note');
             Route::post('custom-debit-note', [DebitNoteController::class, 'custom_Store'])->name('bill.custom.debit.note');
@@ -577,7 +592,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('bill/{id}/duplicate', [BillController::class, 'duplicate'])->name('bill.duplicate');
             Route::get('bill/{id}/shipping/print', [BillController::class, 'shippingDisplay'])->name('bill.shipping.print');
             Route::get('bill/index', [BillController::class, 'index'])->name('bill.index');
@@ -609,7 +625,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('report/transaction', [TransactionController::class, 'index'])->name('transaction.index');
         }
     );
@@ -621,7 +638,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('report/income-summary', [ReportController::class, 'incomeSummary'])->name('report.income.summary');
             Route::get('report/expense-summary', [ReportController::class, 'expenseSummary'])->name('report.expense.summary');
             Route::get('report/income-vs-expense-summary', [ReportController::class, 'incomeVsExpenseSummary'])->name('report.income.vs.expense.summary');
@@ -664,7 +682,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('proposal/{id}/status/change', [ProposalController::class, 'statusChange'])->name('proposal.status.change');
             Route::get('proposal/{id}/convert', [ProposalController::class, 'convert'])->name('proposal.convert');
             Route::get('proposal/{id}/duplicate', [ProposalController::class, 'duplicate'])->name('proposal.duplicate');
@@ -695,7 +714,8 @@ Route::group(['middleware' => ['verified','company']], function () {
 
     Route::resource('account-assets', AssetController::class)->middleware(['auth', 'XSS', 'revalidate']);
     Route::resource('fixed-assets', FixedAssetController::class)->middleware(['auth', 'XSS', 'revalidate']);
-    Route::resource('asset_categories', AssetCategoryController::class)->middleware(['auth', 'XSS', 'revalidate']);;
+    Route::resource('asset_categories', AssetCategoryController::class)->middleware(['auth', 'XSS', 'revalidate']);
+    ;
 
     Route::resource('custom-field', CustomFieldController::class)->middleware(['auth', 'XSS', 'revalidate']);
 
@@ -706,36 +726,38 @@ Route::group(['middleware' => ['verified','company']], function () {
     Route::post('chart-of-account/getaccountcode', [ChartOfAccountController::class, 'getaccountcode'])->name('charofAccount.getaccountcode')->middleware(['auth', 'XSS', 'revalidate']);
     Route::post('chart-of-account/getsubaccountcode', [ChartOfAccountController::class, 'getsubaccountcode'])->name('charofAccount.getsubaccountcode')->middleware(['auth', 'XSS', 'revalidate']);
 
-        Route::group(
+    Route::group(
         [
             'middleware' => [
                 'auth',
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
-            Route::get('chart-account-tree/tree', [AccountController::class,'treePage'])->name('account.index');
-            Route::get('chart-account-tree/create', [AccountController::class,'create'])->name('account.create');
-            Route::get('chart-account-tree/edit', [AccountController::class,'edit'])->name('account.edit');
-            Route::delete('chart-account-tree/delete', [AccountController::class,'destroy'])->name('account.delete');
-            Route::put('chart-account-tree/update/{account}', [AccountController::class,'update'])->name('account.update');
-            Route::post('chart-account-tree/move', [AccountController::class,'move'])->name('account.move');
-            Route::post('chart-account-tree/store', [AccountController::class,'store'])->name('account.store');
-            Route::get('account-tree/json', [AccountController::class,'jsTreeJson'])->name('tree.json');
-            Route::get('account-tree/json/data', [AccountController::class,'treeJson'])->name('tree.json.data');
+        ],
+        function () {
+            Route::get('chart-account-tree/tree', [AccountController::class, 'treePage'])->name('account.index');
+            Route::get('chart-account-tree/create', [AccountController::class, 'create'])->name('account.create');
+            Route::get('chart-account-tree/edit', [AccountController::class, 'edit'])->name('account.edit');
+            Route::delete('chart-account-tree/delete', [AccountController::class, 'destroy'])->name('account.delete');
+            Route::put('chart-account-tree/update/{account}', [AccountController::class, 'update'])->name('account.update');
+            Route::post('chart-account-tree/move', [AccountController::class, 'move'])->name('account.move');
+            Route::post('chart-account-tree/store', [AccountController::class, 'store'])->name('account.store');
+            Route::get('account-tree/json', [AccountController::class, 'jsTreeJson'])->name('tree.json');
+            Route::get('account-tree/json/data', [AccountController::class, 'treeJson'])->name('tree.json.data');
             Route::get('/accounts/next-code', [AccountController::class, 'generateNextCode'])->name('account.next-code');
 
 
         }
     );
-        Route::group(
+    Route::group(
         [
             'middleware' => [
                 'auth',
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::resource('chart-of-account', ChartOfAccountController::class);
         }
     );
@@ -747,7 +769,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
 
             Route::post('journal-entry/account/destroy', [JournalEntryController::class, 'accountDestroy'])->name('journal.account.destroy');
 
@@ -1194,14 +1217,15 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::resource('contractType', ContractTypeController::class);
         }
     );
 
     // Project Timesheet
     Route::get('append-timesheet-task-html', [TimesheetController::class, 'appendTimesheetTaskHTML'])->name('append.timesheet.task.html')->middleware(['auth', 'XSS']);
-//    Route::get('timesheet-table-view', [TimesheetController::class, 'filterTimesheetTableView'])->name('filter.timesheet.table.view')->middleware(['auth', 'XSS']);
+    //    Route::get('timesheet-table-view', [TimesheetController::class, 'filterTimesheetTableView'])->name('filter.timesheet.table.view')->middleware(['auth', 'XSS']);
     Route::get('timesheet-view', [TimesheetController::class, 'filterTimesheetView'])->name('filter.timesheet.view')->middleware(['auth', 'XSS']);
     Route::get('timesheet-list', [TimesheetController::class, 'timesheetList'])->name('timesheet.list')->middleware(['auth', 'XSS']);
     Route::get('timesheet-list-get', [TimesheetController::class, 'timesheetListGet'])->name('timesheet.list.get')->middleware(['auth', 'XSS']);
@@ -1219,7 +1243,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'auth',
                 'XSS',
             ],
-        ], function () {
+        ],
+        function () {
             Route::resource('projectstages', ProjectstagesController::class);
             Route::post('/projectstages/order', [ProjectstagesController::class, 'order'])->name('projectstages.order')->middleware(['auth', 'XSS']);
             Route::post('projects/bug/kanban/order', [ProjectController::class, 'bugKanbanOrder'])->name('bug.kanban.order');
@@ -1253,7 +1278,7 @@ Route::group(['middleware' => ['verified','company']], function () {
     // saas
     Route::resource('users', UserController::class)->middleware(['auth', 'XSS', 'revalidate']);
     Route::resource('plans', PlanController::class)->middleware(['auth', 'XSS', 'revalidate']);
-    Route::get('plan-trial/{id}', [PlanController::class,'planTrial'])->name('plan.trial')->middleware(['auth', 'XSS', 'revalidate']);
+    Route::get('plan-trial/{id}', [PlanController::class, 'planTrial'])->name('plan.trial')->middleware(['auth', 'XSS', 'revalidate']);
     Route::post('plan-disable', [PlanController::class, 'planDisable'])->name('plan.disable')->middleware(['auth', 'XSS', 'revalidate']);
     Route::post('plan-visible', [PlanController::class, 'planVisible'])->name('plan.visible')->middleware(['auth', 'XSS', 'revalidate']);
     Route::resource('coupons', CouponController::class)->middleware(['auth', 'XSS', 'revalidate']);
@@ -1269,10 +1294,12 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('/orders', [CheckoutPaymentController::class, 'index'])->name('order.index');
             Route::get('/refund/{id}/{user_id}', [CheckoutPaymentController::class, 'refund'])->name('order.refund');
-        });
+        }
+    );
 
     Route::get('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon')->middleware(['auth', 'XSS', 'revalidate']);
 
@@ -1309,7 +1336,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('contract/{id}/description', [ContractController::class, 'description'])->name('contract.description');
             Route::get('contract/grid', [ContractController::class, 'grid'])->name('contract.grid');
             Route::resource('contract', ContractController::class);
@@ -1344,7 +1372,7 @@ Route::group(['middleware' => ['verified','company']], function () {
 
     // Custom Landing Page
 
-//    Route::get('/landingpage', [LandingPageSectionController::class, 'index'])->name('custom_landing_page.index')->middleware(['auth', 'XSS']);
+    //    Route::get('/landingpage', [LandingPageSectionController::class, 'index'])->name('custom_landing_page.index')->middleware(['auth', 'XSS']);
 //    Route::get('/LandingPage/show/{id}', [LandingPageSectionController::class, 'show']);
 //
 //    Route::post('/LandingPage/setConetent', [LandingPageSectionController::class, 'setConetent'])->middleware(['auth', 'XSS']);
@@ -1433,8 +1461,8 @@ Route::group(['middleware' => ['verified','company']], function () {
     Route::any('/xendit/payment/status', [XenditPaymentController::class, 'planGetXenditStatus'])->name('plan.xendit.status');
 
     Route::post('/nepalste/payment', [NepalstePaymnetController::class, 'planPayWithnepalste'])->name('plan.pay.with.nepalste');
-    Route::get('nepalste/status/',[NepalstePaymnetController::class,'planGetNepalsteStatus'])->name('nepalste.status');
-    Route::get('nepalste/cancel/',[NepalstePaymnetController::class,'planGetNepalsteCancel'])->name('nepalste.cancel');
+    Route::get('nepalste/status/', [NepalstePaymnetController::class, 'planGetNepalsteStatus'])->name('nepalste.status');
+    Route::get('nepalste/cancel/', [NepalstePaymnetController::class, 'planGetNepalsteCancel'])->name('nepalste.cancel');
 
 
 
@@ -1450,11 +1478,12 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('order', [CheckoutPaymentController::class, 'index'])->name('order.index');
         }
     );
-//    Route::post('plan-pay-with-paypal', [PaypalController::class, 'planPayWithPaypal'])->name('plan.pay.with.paypal')->middleware(['auth', 'XSS', 'revalidate']);
+    //    Route::post('plan-pay-with-paypal', [PaypalController::class, 'planPayWithPaypal'])->name('plan.pay.with.paypal')->middleware(['auth', 'XSS', 'revalidate']);
 //    Route::get('{id}/plan-get-payment-status', [PaypalController::class, 'planGetPaymentStatus'])->name('plan.get.payment.status')->middleware(['auth', 'XSS', 'revalidate']);
 
     Route::group(
@@ -1464,7 +1493,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('support/{id}/reply', [SupportController::class, 'reply'])->name('support.reply');
             Route::post('support/{id}/reply', [SupportController::class, 'replyAnswer'])->name('support.reply.answer');
             Route::get('support/grid', [SupportController::class, 'grid'])->name('support.grid');
@@ -1482,7 +1512,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::resource('performanceType', PerformanceTypeController::class);
         }
     );
@@ -1568,7 +1599,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('purchase/items', [PurchaseController::class, 'items'])->name('purchase.items');
             Route::resource('purchase', PurchaseController::class);
 
@@ -1596,14 +1628,14 @@ Route::group(['middleware' => ['verified','company']], function () {
     Route::get('pos/pdf/{id}', [PosController::class, 'pos'])->name('pos.pdf')->middleware(['auth', 'XSS', 'revalidate']);
     Route::get('pos/data/store', [PosController::class, 'store'])->name('pos.data.store')->middleware(['auth', 'XSS', 'revalidate']);
 
-        //pos barcode
-        Route::get('barcode/pos', [PosController::class, 'barcode'])->name('pos.barcode')->middleware(['auth', 'XSS']);
-        Route::get('setting/pos', [PosController::class, 'setting'])->name('pos.setting')->middleware(['auth', 'XSS']);
-        Route::post('barcode/settings', [PosController::class, 'BarcodesettingStore'])->name('barcode.setting');
-        Route::get('print/pos', [PosController::class, 'printBarcode'])->name('pos.print')->middleware(['auth', 'XSS']);
-        Route::post('pos/getproduct', [PosController::class, 'getproduct'])->name('pos.getproduct')->middleware(['auth', 'XSS']);
-        Route::any('pos-receipt', [PosController::class, 'receipt'])->name('pos.receipt')->middleware(['auth', 'XSS']);
-        Route::post('/cartdiscount', [PosController::class, 'cartdiscount'])->name('cartdiscount')->middleware(['auth', 'XSS']);
+    //pos barcode
+    Route::get('barcode/pos', [PosController::class, 'barcode'])->name('pos.barcode')->middleware(['auth', 'XSS']);
+    Route::get('setting/pos', [PosController::class, 'setting'])->name('pos.setting')->middleware(['auth', 'XSS']);
+    Route::post('barcode/settings', [PosController::class, 'BarcodesettingStore'])->name('barcode.setting');
+    Route::get('print/pos', [PosController::class, 'printBarcode'])->name('pos.print')->middleware(['auth', 'XSS']);
+    Route::post('pos/getproduct', [PosController::class, 'getproduct'])->name('pos.getproduct')->middleware(['auth', 'XSS']);
+    Route::any('pos-receipt', [PosController::class, 'receipt'])->name('pos.receipt')->middleware(['auth', 'XSS']);
+    Route::post('/cartdiscount', [PosController::class, 'cartdiscount'])->name('cartdiscount')->middleware(['auth', 'XSS']);
 
     //for pos print
     Route::get('printview/pos', [PosController::class, 'printView'])->name('pos.printview')->middleware(['auth', 'XSS', 'revalidate']);
@@ -1740,7 +1772,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('expense/index', [ExpenseController::class, 'index'])->name('expense.index');
             Route::any('expense/customer', [ExpenseController::class, 'customer'])->name('expense.customer');
             Route::post('expense/vender', [ExpenseController::class, 'vender'])->name('expense.vender');
@@ -1774,15 +1807,15 @@ Route::group(['middleware' => ['verified','company']], function () {
 
 
     //================================= Production Lines ====================================//
-    Route::prefix('production')->group(function(){
+    Route::prefix('production')->group(function () {
         Route::get('/lines', [ProductionLineController::class, 'index'])->name('production.line.index')->middleware(['auth', 'XSS']);
         Route::get('/create', [ProductionLineController::class, 'create'])->name('production.line.create')->middleware(['auth', 'XSS']);
         Route::post('/store', [ProductionLineController::class, 'store'])->name('production.line.store')->middleware(['auth', 'XSS']);
         Route::get('/edit/{line}', [ProductionLineController::class, 'edit'])->name('production.line.edit')->middleware(['auth', 'XSS']);
         Route::put('/update/{line}', [ProductionLineController::class, 'update'])->name('production.line.update')->middleware(['auth', 'XSS']);
         Route::delete('/delete/{line}', [ProductionLineController::class, 'delete'])->name('production.line.delete')->middleware(['auth', 'XSS']);
-       // Type Routes
-        Route::prefix('type')->group(function(){
+        // Type Routes
+        Route::prefix('type')->group(function () {
             Route::get('/', [ProductionLineController::class, 'productionLineType'])->name('production.line.type.index')->middleware(['auth', 'XSS']);
             Route::get('/create', [ProductionLineController::class, 'productionTypeCreate'])->name('production.line.type.create')->middleware(['auth', 'XSS']);
             Route::post('/store', [ProductionLineController::class, 'productionTypeStore'])->name('production.line.type.store')->middleware(['auth', 'XSS']);
@@ -1794,26 +1827,26 @@ Route::group(['middleware' => ['verified','company']], function () {
     //================================= Production Lines ====================================//
 
     //================================= UI ====================================//
-            Route::prefix('UI')->group(function(){
-                // Slide Show
-                    Route::prefix('slideshow')->group(function(){
-                        Route::get('/', [UiDesignController::class, 'index'])->name('design.show')->middleware(['auth', 'XSS']);
-                        Route::get('/create', [UiDesignController::class, 'create'])->name('design.create')->middleware(['auth', 'XSS']);
-                        Route::post('/store', [UiDesignController::class, 'store'])->name('slideshow.store')->middleware(['auth', 'XSS']);
-                        Route::get('/edit/{slideshow}', [UiDesignController::class, 'edit'])->name('slideshow.edit')->middleware(['auth', 'XSS']);
-                        Route::put('/update/{slideshow}', [UiDesignController::class, 'update'])->name('slideshow.update')->middleware(['auth', 'XSS']);
-                        Route::get('/delete/{slideshow}', [UiDesignController::class, 'destroy'])->name('slideshow.delete')->middleware(['auth', 'XSS']);
-                    });
-                    Route::prefix('category')->group(function(){
-                        Route::get('/', [UiDesignController::class, 'categoryShow'])->name('design.show.category')->middleware(['auth', 'XSS']);
-                        Route::get('/setting/create', [UiDesignController::class, 'setting'])->name('design.category.create')->middleware(['auth', 'XSS']);
-                        Route::post('/setting/store', [UiDesignController::class, 'categoryStore'])->name('design.category.store')->middleware(['auth', 'XSS']);
-                        Route::get('/setting/edit/{category}', [UiDesignController::class, 'categoryUiedit'])->name('design.change.edit')->middleware(['auth', 'XSS']);
-                        Route::put('/setting/update/{category}', [UiDesignController::class, 'categoryUiUpdate'])->name('design.change.update')->middleware(['auth', 'XSS']);
-                        Route::delete('/setting/delete/{category}', [UiDesignController::class, 'delete'])->name('design.change.delete')->middleware(['auth', 'XSS']);
-                     
-                    });
-                    // Categories 
+    Route::prefix('UI')->group(function () {
+        // Slide Show
+        Route::prefix('slideshow')->group(function () {
+            Route::get('/', [UiDesignController::class, 'index'])->name('design.show')->middleware(['auth', 'XSS']);
+            Route::get('/create', [UiDesignController::class, 'create'])->name('design.create')->middleware(['auth', 'XSS']);
+            Route::post('/store', [UiDesignController::class, 'store'])->name('slideshow.store')->middleware(['auth', 'XSS']);
+            Route::get('/edit/{slideshow}', [UiDesignController::class, 'edit'])->name('slideshow.edit')->middleware(['auth', 'XSS']);
+            Route::put('/update/{slideshow}', [UiDesignController::class, 'update'])->name('slideshow.update')->middleware(['auth', 'XSS']);
+            Route::get('/delete/{slideshow}', [UiDesignController::class, 'destroy'])->name('slideshow.delete')->middleware(['auth', 'XSS']);
+        });
+        Route::prefix('category')->group(function () {
+            Route::get('/', [UiDesignController::class, 'categoryShow'])->name('design.show.category')->middleware(['auth', 'XSS']);
+            Route::get('/setting/create', [UiDesignController::class, 'setting'])->name('design.category.create')->middleware(['auth', 'XSS']);
+            Route::post('/setting/store', [UiDesignController::class, 'categoryStore'])->name('design.category.store')->middleware(['auth', 'XSS']);
+            Route::get('/setting/edit/{category}', [UiDesignController::class, 'categoryUiedit'])->name('design.change.edit')->middleware(['auth', 'XSS']);
+            Route::put('/setting/update/{category}', [UiDesignController::class, 'categoryUiUpdate'])->name('design.change.update')->middleware(['auth', 'XSS']);
+            Route::delete('/setting/delete/{category}', [UiDesignController::class, 'delete'])->name('design.change.delete')->middleware(['auth', 'XSS']);
+
+        });
+        // Categories 
     });
     //================================= UI ====================================//
 
@@ -1825,14 +1858,15 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::resource('shipping', shippingController::class);
             Route::resource('web_orders', webOrdersController::class);
-            Route::get('web_orders/product/delete/{id}', [webOrdersController::class,'productorderdelete'])->name('web_orders.productorderdelete');
-            Route::get('web_orders/delete/{id}', [webOrdersController::class,'destroy'])->name('web_orders.delete');
+            Route::get('web_orders/product/delete/{id}', [webOrdersController::class, 'productorderdelete'])->name('web_orders.productorderdelete');
+            Route::get('web_orders/delete/{id}', [webOrdersController::class, 'destroy'])->name('web_orders.delete');
             Route::resource('web_users', WebUsersController::class);
-            Route::get('web_users/convert/{id}', [WebUsersController::class,'convert'])->name('web_users.convert');
-            Route::get('web_orders/proposal/{id}', [webOrdersController::class,'createProposal'])->name('web_users.proposal');
+            Route::get('web_users/convert/{id}', [WebUsersController::class, 'convert'])->name('web_users.convert');
+            Route::get('web_orders/proposal/{id}', [webOrdersController::class, 'createProposal'])->name('web_users.proposal');
             Route::get('web_orders/{id}/status/change', [webOrdersController::class, 'statusChange'])->name('web_orders.status.change');
             Route::get('web_orders_product/{id}/status/change', [webOrdersController::class, 'statusChangeProduct'])->name('web_orders_product.status.change');
 
@@ -1846,7 +1880,8 @@ Route::group(['middleware' => ['verified','company']], function () {
                 'XSS',
                 'revalidate',
             ],
-        ], function () {
+        ],
+        function () {
             Route::get('userinfo/img', [userinfoController::class, 'index'])->name('userinfo.img');
         }
     );
@@ -1857,7 +1892,7 @@ Route::group(['middleware' => ['verified','company']], function () {
 });
 
 // momen Vistor route [2024-8-21 12:00:00]
-Route::group(['middleware' => ['ghost','auth','XSS', 'revalidate']], function () {
+Route::group(['middleware' => ['ghost', 'auth', 'XSS', 'revalidate']], function () {
     Route::get('/home', [DashboardController::class, 'account_dashboard_index'])->name('home');
     Route::get('/account-dashboard', [DashboardController::class, 'account_dashboard_index'])->name('dashboard');
     Route::resource('plans', PlanController::class);
@@ -1867,7 +1902,7 @@ Route::group(['middleware' => ['ghost','auth','XSS', 'revalidate']], function ()
     Route::get('/checkout/{code}', [CheckoutPaymentController::class, 'stripe'])->name('checkout');
     Route::post('/checkout', [CheckoutPaymentController::class, 'stripePost'])->name('checkout.post');
     Route::get('request_send/{id}', [PlanRequestController::class, 'userRequest'])->name('send.request');
-    Route::get('plan-trial/{id}', [PlanController::class,'planTrial'])->name('plan.trial');
+    Route::get('plan-trial/{id}', [PlanController::class, 'planTrial'])->name('plan.trial');
     Route::post('plan-pay-with-paytab', [PaytabController::class, 'planPayWithpaytab'])->name('plan.pay.with.paytab');
     Route::any('paytab-success/plan', [PaytabController::class, 'PaytabGetPayment'])->name('plan.paytab.success');
 
@@ -1882,12 +1917,12 @@ Route::group(['middleware' => ['ghost','auth','XSS', 'revalidate']], function ()
 
 // Route::resource('meet-tracks', MeetTrackController::class);
 
-Route::post('meet-track',[MeetTrackController::class , 'store'])->name('meet.store');
+Route::post('meet-track', [MeetTrackController::class, 'store'])->name('meet.store');
 
 
 Route::get('change-language/{lang}', [LanguageController::class, 'changeLanquage'])->name('change.language');
 
 // Route::get('/choose_account',[AccountsController::class, 'index'])->name('choose_account');
-Route::get('/testing',[TestingController::class, 'index']);
+Route::get('/testing', [TestingController::class, 'index']);
 
 Route::any('/cookie-consent', [SystemController::class, 'CookieConsent'])->name('cookie-consent');

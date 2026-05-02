@@ -47,10 +47,11 @@
         "whichbrowser/parser": "^2.1.8",
         "xendit/xendit-php": "^2.19",
         "yajra/laravel-datatables-oracle": "^10.11.4",
-        "yoomoney/yookassa-sdk-php": "^3.4"
+        "yoomoney/yookassa-sdk-php": "^3.4",
+        "barryvdh/laravel-debugbar": "^3.13.5"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.13.5",
+    
         "fakerphp/faker": "^1.23.1",
         "kitloong/laravel-migrations-generator": "^7.0",
         "laravel/pint": "^1.16.1",

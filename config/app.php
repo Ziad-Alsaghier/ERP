@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 $debug = true;
-define('ROOT_PATH', 'Packages/zatca-qr');
+// define('ROOT_PATH', 'Packages/zatca-qr');
 return [
 
     /*

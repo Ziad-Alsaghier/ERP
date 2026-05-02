@@ -56,6 +56,8 @@ use ZATCA\Tags\InvoiceTaxAmount;
 use ZATCA\Tags\InvoiceTotalAmount;
 use ZATCA\Tags\Seller;
 use ZATCA\Tags\TaxNumber;
+use Endroid\QrCode\Writer\PngWriter;
+
 use ZATCA\EGS;
 // use ZATCA\GenerateQrCode;
 // use ZATCA\Tags\InvoiceDate;
@@ -530,41 +532,68 @@ class InvoiceController extends Controller
             $data = $this->data($customer, $settings_data, $invoice->items, $invoice);
             // $qrCode = qrCode($data['information'], $data['items'], $data['invoice'], $width = 300);
             // Optional
-            $qrCodeOptions = new QrCodeOptions;
+            $data = $this->data($customer, $settings_data, $invoice->items, $invoice);
 
-            // Format (png,svg,eps)
-            $qrCodeOptions->format("svg");
-
-            // Color 
-            $qrCodeOptions->color(255, 0, 0, 1);
-
-            // Background Color 
-            $qrCodeOptions->backgroundColor(0, 0, 0);
-
-            // Size
-            $qrCodeOptions->size(500);
-
-            // Margin 
-            $qrCodeOptions->margin(0);
-
-            // Style (square,dot,round)
-            $qrCodeOptions->style('square', 0.5);
-
-            // Eye (square,circle)
-            $qrCodeOptions->eye('square');
-
-            $qrCode = Zatca::sellerName('Zatca')
-                ->vatRegistrationNumber("123456789123456")
-                ->timestamp("2021-12-01T14:00:09Z")
-                ->totalWithVat('100.00')
-                ->vatTotal('15.00')
-                ->toQrCode($qrCodeOptions);
+            $qrCode = $this->generateZatcaQr($data);
 
             return view('invoice.view', compact('invoice', 'customer', 'iteams', 'invoicePayment', 'customFields', 'user', 'invoice_user', 'user_plan', 'creditnote', 'qrCode'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
 
+    }
+
+    public function generateZatcaQr(array $data)
+    {
+        $info = $data['information'];
+        $items = $data['items'];
+        $invoice = $data['invoice'];
+
+        $total = 0;
+        $vatTotal = 0;
+
+        foreach ($items as $item) {
+            $price = $item['tax_exclusive_price'];
+            $qty = $item['quantity'];
+            $vat = $item['VAT_percent'];
+
+            $lineTotal = bcmul($price, $qty, 2);
+            $lineVat = bcmul($lineTotal, $vat, 2);
+
+            $total = bcadd($total, bcadd($lineTotal, $lineVat, 2), 2);
+            $vatTotal = bcadd($vatTotal, $lineVat, 2);
+        }
+
+        $timestamp = \Carbon\Carbon::parse(
+            str_replace(':', '-', $invoice['issue_date']) . ' ' . $invoice['issue_time']
+        )->format('Y-m-d\TH:i:s\Z');
+
+        // TLV Build
+        $tlv = '';
+        $tlv .= $this->tlv(1, $info['VAT_name']);
+        $tlv .= $this->tlv(2, $info['VAT_number']);
+        $tlv .= $this->tlv(3, $timestamp);
+        $tlv .= $this->tlv(4, $total);
+        $tlv .= $this->tlv(5, $vatTotal);
+
+        // Base64
+        $base64 = base64_encode($tlv);
+        $writer = new PngWriter(); // uses GD automatically
+        // Generate QR
+        $result = Builder::create()
+            ->writer(new PngWriter()) // ✅ يستخدم GD مش imagick
+            ->data($base64)
+            ->encoding(new Encoding('UTF-8'))
+            ->size(300)
+            ->margin(0)
+            ->build();
+        return  $result->getString();
+        
+    }
+    private function tlv($tag, $value)
+    {
+        $value = (string) $value;
+        return chr($tag) . chr(strlen($value)) . $value;
     }
 
     public function destroy(Invoice $invoice, Request $request)

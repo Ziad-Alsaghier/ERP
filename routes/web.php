@@ -156,7 +156,7 @@ use App\Http\Controllers\webOrdersController;
 use App\Http\Controllers\WebUsersController;
 use App\Http\Controllers\FixedAssetController;
 use App\Http\Controllers\AssetCategoryController;
-use App\Http\Controllers\Manufacturing\CalculateController;
+// use App\Http\Controllers\Manufacturing\CalculateController;
 use App\Http\Controllers\ApiGenerate;
 use App\Http\Controllers\ProductionLineController;
 use App\Http\Controllers\UiDesignController;
@@ -1764,7 +1764,7 @@ Route::group(['middleware' => ['verified','company']], function () {
     Route::get('/manufacturing/create-manufac', [ManufacturingController::class, 'create_manufac'])->name('manufacturing.create_manufac')->middleware(['auth', 'XSS']);
     Route::get('/manufacturing/product/{id}', [ManufacturingController::class, 'getProductsByCategory'])->name('manufacturing.getProductsByCategory')->middleware(['auth', 'XSS']);
     Route::get('/manufacturing/details/{id}', [ManufacturingController::class, 'getProductsDetails'])->name('manufacturing.getProductsDetails')->middleware(['auth', 'XSS']);
-    Route::post('/manufacturing/calculate/{id}', [CalculateController::class, 'config_calculate'])->name('manufacturing.calculate')->middleware(['auth', 'XSS']);
+    // Route::post('/manufacturing/calculate/{id}', [CalculateController::class, 'config_calculate'])->name('manufacturing.calculate')->middleware(['auth', 'XSS']);
     Route::post('/manufacturing/uploadfile', [ManufacturingController::class, 'uploadfile'])->name('manufacturing.uploadfile')->middleware(['auth', 'XSS']);
     Route::get('/admin/manufacturing', [AdminManufacturingController::class, 'index'])->name('AdminManufacturing')->middleware(['auth', 'XSS']);
     Route::post('/admin/manufacturing/add', [AdminManufacturingController::class, 'add'])->name('AdminManufacturing.add')->middleware(['auth', 'XSS']);

@@ -74,9 +74,7 @@
         },
         "files": [
             "app/Helpers/LanguageHelper.php",
-            "app/Helpers/helpers.php",
-            "app/Helpers/debug.php"
-
+            "app/Helpers/helpers.php"
         ]
     },
     "autoload-dev": {

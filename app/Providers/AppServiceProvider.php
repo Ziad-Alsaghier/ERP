@@ -12,7 +12,8 @@ use Closure;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -32,7 +33,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         Schema::defaultStringLength(191);
+        if (config('app.debug')) {
+            DB::listen(function ($query) {
+                Log::debug('SQL QUERY', [
+                    'sql' => $query->sql,
+                    'time' => $query->time,
+                    'bindings' => $query->bindings,
+                ]);
+            });
+
+        }
         // if (file_exists(app_path('Helpers/helpers.php'))) {
         //     require_once app_path('Helpers/helpers.php');
         // }
